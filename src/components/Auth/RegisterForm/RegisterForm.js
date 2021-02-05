@@ -3,9 +3,15 @@ import { Form, Button, Image } from "semantic-ui-react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Logo from "../../../assets/Logo.png";
+import { toast } from "react-toastify";
+import { useMutation } from "@apollo/client";
+import { REGISTER } from "../../../gql/user";
 import "./RegisterForm.scss";
 
-export default function RegisterForm() {
+export default function RegisterForm(props) {
+  const { setShowLogin } = props;
+
+  const [register] = useMutation(REGISTER);
   const formik = useFormik({
     initialValues: initialValues(),
     validationSchema: Yup.object({
@@ -26,12 +32,23 @@ export default function RegisterForm() {
     }),
     onSubmit: async (formData) => {
       try {
-        console.log(formData);
+        const newUser = formData;
+        delete newUser.repeatPassword;
+
+        await register({
+          variables: {
+            input: newUser,
+          },
+        });
+        toast.success("Usuario registrado correctamente.");
+        console.log("USUARIO REGISTRADO CORRECTAMENTE.");
+        setShowLogin(true);
       } catch (error) {
-        console.log(error);
+        toast.error(error.message);
       }
     },
   });
+
   return (
     <Form className="register-form" onSubmit={formik.handleSubmit}>
       <div className="register-form__logo">

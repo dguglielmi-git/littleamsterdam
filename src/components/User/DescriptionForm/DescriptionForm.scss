@@ -1,0 +1,16 @@
+@import "../../../scss/index.scss";
+
+.description-form {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin: 20px;
+
+  textarea {
+    margin-bottom: 20px !important;
+
+    &.error {
+      border: 1px solid $danger !important;
+    }
+  }
+}

@@ -1,5 +1,11 @@
 @import "../../scss/index.scss";
 
 .home {
-    
+  &__left {
+    padding: 30px;
+  }
+
+  &__right {
+      padding: 30px;
+  }
 }

@@ -1,0 +1,31 @@
+@import "../../../../scss/index.scss";
+
+.actions {
+  align-items: center;
+  padding: 0 10px;
+
+  i {
+    font-size: 16px !important;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.actions-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 0 10px;
+
+  i {
+    font-size: 16px !important;
+    margin-top: 10px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

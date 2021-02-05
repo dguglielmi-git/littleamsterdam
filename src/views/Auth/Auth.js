@@ -6,10 +6,15 @@ import "./Auth.scss";
 
 export default function Auth() {
   const [showLogin, setShowLogin] = useState(true);
+
   return (
     <Container fluid className="auth">
       <div className="container-form">
-        {showLogin ? <LoginForm /> : <RegisterForm />}
+        {showLogin ? (
+          <LoginForm />
+        ) : (
+          <RegisterForm setShowLogin={setShowLogin} />
+        )}
       </div>
 
       <div className="change-form">

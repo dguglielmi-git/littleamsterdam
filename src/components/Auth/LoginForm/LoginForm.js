@@ -4,11 +4,14 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import useAuth from "../../../hooks/useAuth";
 import Logo from "../../../assets/Logo.png";
+import { useMutation } from "@apollo/client";
+import { LOGIN } from "../../../gql/user";
 import { setToken, decodeToken } from "../../../utils/token";
 import "./LoginForm.scss";
 
 export default function LoginForm() {
   const [error, setError] = useState("");
+  const [login] = useMutation(LOGIN);
 
   const { setUser } = useAuth();
 
@@ -19,10 +22,20 @@ export default function LoginForm() {
       password: Yup.string().required("Password required"),
     }),
     onSubmit: async (formData) => {
+      setError("");
       try {
-        console.log(formData);
+        const { data } = await login({
+          variables: {
+            input: formData,
+          },
+        });
+        console.log(data);
+        const { token } = data.login;
+        setToken(token);
+        setUser(decodeToken(token));
       } catch (error) {
         console.log(error);
+        setError(error.message);
       }
     },
   });
@@ -52,10 +65,10 @@ export default function LoginForm() {
       <Button fluid type="submit" className="btn-submit">
         Login
       </Button>
+      {error && <p className="submit-error">{error}</p>}
     </Form>
   );
 }
-
 function initialValues() {
   return {
     email: "",

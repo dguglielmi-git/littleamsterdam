@@ -1,5 +1,37 @@
 @import "../../scss/index.scss";
 
 .header {
-    
+  border-bottom: 1px solid $separator;
+  height: 50px;
+  width: 100vw;
+  padding-top: 5px;
+  background: linear-gradient(
+    to right,
+    #f98a0d 0%,
+    #f96a0d 5%,
+    #f9630d 25%,
+    #f95f0d 50%,
+    #f9460d 100%
+  );
+
+  &__logo {
+    display: flex !important;
+    justify-content: center;
+    padding-left: 20px !important;
+
+    img {
+      width: 35px !important;
+    }
+  }
+
+  &__menu {
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 5px !important;
+    padding-right: 20px !important;
+  }
+
+  img {
+    width: 30px;
+  }
 }

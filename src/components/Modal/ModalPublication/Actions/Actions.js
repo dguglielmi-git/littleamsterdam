@@ -30,27 +30,22 @@ export default function Actions(props) {
   const [deleteNotLike] = useMutation(DELETE_NOT_LIKE);
   const [deleteTrash] = useMutation(DELETE_TRASH);
 
-  const { data, loading, refetch } = useQuery(IS_LIKE, {
+  const { loading, refetch } = useQuery(IS_LIKE, {
     variables: {
       idPublication: publication.id,
     },
   });
 
-  const {
-    data: dataNotLike,
-    loading: loadingNotLike,
-    refetch: refetchNotLike,
-  } = useQuery(IS_NOT_LIKE, {
-    variables: {
-      idPublication: publication.id,
-    },
-  });
+  const { loading: loadingNotLike, refetch: refetchNotLike } = useQuery(
+    IS_NOT_LIKE,
+    {
+      variables: {
+        idPublication: publication.id,
+      },
+    }
+  );
 
-  const {
-    data: dataTrash,
-    loading: loadingTrash,
-    refetch: refetchTrash,
-  } = useQuery(IS_TRASH, {
+  const { loading: loadingTrash, refetch: refetchTrash } = useQuery(IS_TRASH, {
     variables: {
       idPublication: publication.id,
     },
@@ -225,11 +220,8 @@ export default function Actions(props) {
   )
     return null;
 
-  const { isLike } = data;
   const { countLikes } = dataCount;
-  const { isNotLike } = dataNotLike;
   const { countNotLikes } = dataCountNotLike;
-  const { isTrash } = dataTrash;
   const { countTrash } = dataCountTrash;
 
   return (

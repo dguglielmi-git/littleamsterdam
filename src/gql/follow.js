@@ -28,7 +28,6 @@ export const GET_FOLLOWEDS = gql`
 `;
 
 // Mutations
-
 export const FOLLOW = gql`
   mutation follow($username: String!) {
     follow(username: $username)

@@ -1,9 +1,41 @@
 @import "../../../scss/index.scss";
 
+@mixin cellphone {
+  @media only screen and (min-width: $resol-cell) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media only screen and (min-width: $resol-tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media only screen and (min-width: $resol-desktop) {
+    @content;
+  }
+}
+
 .feed {
   padding-top: 50px;
-  height: calc(100vh - 63px);
+  height: calc(100vh - 80px);
+
+  @include cellphone {
+    width: 100% !important;
+  }
+
+  @include tablet {
+    width: 500px !important;
+  } 
+
+  @include desktop {
+    width: 600px !important;
+  } 
+
   overflow-y: scroll;
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -11,6 +43,7 @@
   &__box {
     margin-bottom: 50px;
     border: 1px solid $border-grey;
+    
 
     &-user {
       background-color: $background-light;
@@ -27,7 +60,7 @@
     }
 
     &-photo {
-      height: 500px;
+      height: 350px;
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;

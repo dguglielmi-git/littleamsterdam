@@ -1,37 +1,88 @@
 @import "../../scss/index.scss";
 
+@mixin cellphone {
+  @media only screen and (min-width: $resol-cell) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media only screen and (min-width: $resol-tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media only screen and (min-width: $resol-desktop) {
+    @content;
+  }
+}
+/*
 .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
   border-bottom: 1px solid $separator;
   height: 50px;
   width: 100vw;
   padding-top: 5px;
-  background: linear-gradient(
+  /*background: linear-gradient(
     to right,
     #f98a0d 0%,
     #f96a0d 5%,
     #f9630d 25%,
     #f95f0d 50%,
     #f9460d 100%
-  );
-
+  );*/
+  
+/*
   &__logo {
     display: flex !important;
     justify-content: center;
     padding-left: 20px !important;
 
     img {
-      width: 35px !important;
+      @include cellphone {
+        width: 20px !important;
+        margin-right: 10px;
+        justify-content: flex-start;
+      }
+
+      @include desktop {
+        width: 100px !important;
+      }
+    }
+  }
+
+  &__search {
+    @include desktop {
+//      width: 30vw;
+width: 500px;
     }
   }
 
   &__menu {
     display: flex !important;
-    justify-content: center !important;
+    justify-content: flex-end !important;
     margin-top: 5px !important;
     padding-right: 20px !important;
   }
+}
+*/
+.header {
+  position: relative;
+  border-bottom: 1px solid #dbdbdb;
+  padding: 12px 0;
+  background-color: $background-light;
+  //background-color: $littleamsterdam;
+  z-index: 1;
 
-  img {
-    width: 30px;
+  &__logo {
+    display: flex !important;
+    align-items: center;
+
+    img {
+      height: 30px;
+    }
   }
 }

@@ -16,6 +16,7 @@ export default function User() {
       variables: { username },
     }
   );
+  console.log(username);
 
   useEffect(() => {
     // run StartPolling every 1 sec
@@ -30,13 +31,8 @@ export default function User() {
 
   return (
     <div>
-      <Container>
-        <Profile
-          username={username}
-          totalPublications={size(getPublications)}
-        />
-        <Publications getPublications={getPublications} />
-      </Container>
+      <Profile username={username} totalPublications={size(getPublications)} />
+      <Publications getPublications={getPublications} />
     </div>
   );
 }

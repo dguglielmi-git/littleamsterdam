@@ -13,6 +13,7 @@ import "./Feed.scss";
 export default function Feed() {
   const [showModal, setShowModal] = useState(false);
   const [publicationSelect, setPublicationSelect] = useState(null);
+  
   const { data, loading, startPolling, stopPolling } = useQuery(
     GET_PUBLICATIONS_FOLLOWEDS
   );

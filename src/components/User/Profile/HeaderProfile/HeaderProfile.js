@@ -21,7 +21,7 @@ export default function HeaderProfile(props) {
           username: getUser.username,
         },
       });
-      //refetch();
+      refetch();
     } catch (error) {
       console.log(error);
     }
@@ -34,7 +34,7 @@ export default function HeaderProfile(props) {
           username: getUser.username,
         },
       });
-     // refetch();
+      refetch();
     } catch (error) {
       console.log(error);
     }

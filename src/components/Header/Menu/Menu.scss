@@ -1,6 +1,17 @@
 @import "../../../scss/index.scss";
 
 .menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-left: 5px;
+
+  &:hover {
+    cursor: pointer;
+  }
+  &__button {
     display: flex;
-    margin-left: 5px;
+    
+  }
+  
 }

@@ -31,7 +31,7 @@ export default function Followers(props) {
   });
 
   /*
-  // Uncomment this fragment if you want to be checking the number of followers in real time
+  // Uncomment this fragment in order to check the number of followers in real time
   // It will be continuing checking out against the server if there is an update (high cost on performance)
   useEffect(() => {
     startPollingFollowers(1000);

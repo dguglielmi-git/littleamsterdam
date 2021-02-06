@@ -9,7 +9,6 @@ export default function Home() {
 
   return (
     <Grid className="home">
-      <Grid.Row>
         {width < 500 ? (
           <>
             <Grid.Column className="home__left" width={15}>
@@ -27,7 +26,6 @@ export default function Home() {
             </Grid.Column>
           </>
         )}
-      </Grid.Row>
     </Grid>
   );
 }

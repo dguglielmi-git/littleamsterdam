@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Search as SearchSU, Image } from "semantic-ui-react";
+import { Link } from "react-router-dom";
+import { size } from "lodash";
+import { useQuery } from "@apollo/client";
+import { SEARCH } from "../../../gql/user";
+import ImageNotFound from "../../../assets/notLogin.png";
 import "./Search.scss";
 
 export default function Search() {
-    const [search, setSearch] = useState(null);
+  const [search, setSearch] = useState(null);
   const [results, setResults] = useState([]);
- /* const { data, loading } = useQuery(SEARCH, {
+  const { data, loading } = useQuery(SEARCH, {
     variables: { search },
   });
 
-  console.log(results);
   useEffect(() => {
     if (size(data?.search) > 0) {
       const users = [];
@@ -26,7 +30,6 @@ export default function Search() {
       setResults([]);
     }
   }, [data]);
-*/
 
   const onChange = (e) => {
     if (e.target.value) setSearch(e.target.value);
@@ -38,34 +41,31 @@ export default function Search() {
     setResults([]);
   };
 
-
   return (
     <SearchSU
       className="search-users"
       fluid
       input={{ icon: "search", iconPosition: "left" }}
-     // loading={loading}
+      loading={loading}
       value={search || ""}
       onSearchChange={onChange}
       onResultSelect={handleResultSearch}
       results={results}
-   //   resultRenderer={(e) => <ResultSearch data={e} />}
+      resultRenderer={(e) => <ResultSearch data={e} />}
     />
   );
 }
 
-/*
 function ResultSearch(props) {
-    const { data } = props;
-    console.log(data);
-    return (
-      <Link className="search-users__item" to={`/${data.username}`}>
-        <Image src={data.avatar || ImageNotFound} />
-        <div>
-          <p>{data.title}</p>
-          <p>{data.username}</p>
-        </div>
-      </Link>
-    );
-  }
-  */
+  const { data } = props;
+  
+  return (
+    <Link className="search-users__item" to={`/${data.username}`}>
+      <Image src={data.avatar || ImageNotFound} />
+      <div>
+        <p>{data.title}</p>
+        <p>{data.username}</p>
+      </div>
+    </Link>
+  );
+}

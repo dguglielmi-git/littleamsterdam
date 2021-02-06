@@ -9,7 +9,7 @@ export default function LayoutBasic(props) {
   return (
     <React.Fragment>
       <Header />
-      <Container fluid>{children}</Container>
+      <Container className="layout-basic">{children}</Container>
     </React.Fragment>
   );
 }

@@ -27,7 +27,6 @@ export default function CommentForm(props) {
             },
           },
         });
-        console.log(result);
         formik.handleReset();
       } catch (error) {
         console.log(error);

@@ -16,7 +16,6 @@ export default function User() {
       variables: { username },
     }
   );
-  console.log(username);
 
   useEffect(() => {
     // run StartPolling every 1 sec

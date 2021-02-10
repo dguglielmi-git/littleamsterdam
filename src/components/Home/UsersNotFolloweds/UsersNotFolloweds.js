@@ -12,7 +12,6 @@ export default function UsersNotFolloweds() {
 
   if (loading) return null;
   const { getNotFolloweds } = data;
-  console.log(getNotFolloweds);
 
   return (
     <div className="users-not-followeds">

@@ -27,7 +27,6 @@ export default function Profile(props) {
 
   if (error) return <UserNotFound />;
   const { getUser } = data;
-  console.log(getUser);
 
   const handlerModal = (type) => {
     switch (type) {

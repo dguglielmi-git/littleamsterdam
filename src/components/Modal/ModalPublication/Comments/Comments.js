@@ -24,7 +24,6 @@ export default function Comments(props) {
   
   if (loading) return null;
   const { getComments } = data;
-  console.log(data);
   return (
     <div className="comments">
       {map(getComments, (comment, index) => (

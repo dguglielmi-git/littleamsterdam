@@ -29,12 +29,11 @@ export default function LoginForm() {
             input: formData,
           },
         });
-        console.log(data);
+        
         const { token } = data.login;
         setToken(token);
         setUser(decodeToken(token));
       } catch (error) {
-        console.log(error);
         setError(error.message);
       }
     },

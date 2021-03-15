@@ -41,7 +41,6 @@ export default function RegisterForm(props) {
           },
         });
         toast.success("Usuario registrado correctamente.");
-        console.log("USUARIO REGISTRADO CORRECTAMENTE.");
         setShowLogin(true);
       } catch (error) {
         toast.error(error.message);

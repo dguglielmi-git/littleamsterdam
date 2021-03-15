@@ -58,7 +58,6 @@ export default function AvatarForm(props) {
         setLoading(false);
         setShowModal(false);
       }
-      console.log(result);
     } catch (error) {
       console.log(error);
     }
@@ -81,7 +80,6 @@ export default function AvatarForm(props) {
         setShowModal(false);
       }
     } catch (error) {
-      console.log(error);
       toast.warning("Error al eliminar el Avatar");
     }
   };

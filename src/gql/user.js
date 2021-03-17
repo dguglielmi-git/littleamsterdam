@@ -32,6 +32,7 @@ export const GET_USER = gql`
       password
       avatar
       createAt
+      roleName
     }
   }
 `;

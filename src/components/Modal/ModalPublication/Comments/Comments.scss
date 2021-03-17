@@ -4,6 +4,7 @@
   // restamos 60px que ocupa la caja de input y 40px caja de secciones
   height: calc(100% - 95px);
   overflow-y: scroll;
+  scroll-behavior: smooth;
 
   .comment {
     display: flex;

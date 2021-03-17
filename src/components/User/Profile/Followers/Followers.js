@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { size } from "lodash";
 import { GET_FOLLOWERS, GET_FOLLOWEDS } from "../../../../gql/follow";
+import { COUNT_ALBUM } from "../../../../gql/album";
 import ModalBasic from "../../../Modal/ModalBasic";
 import ListUsers from "../../ListUsers";
 import "./Followers.scss";
 
 export default function Followers(props) {
-  const { username, totalPublications } = props;
+  const { username, totalPublications, idUser } = props;
   const [showModal, setShowModal] = useState(false);
   const [titleModal, setTitleModal] = useState("");
   const [childrenModal, setChildrenModal] = useState(null);
@@ -29,6 +30,13 @@ export default function Followers(props) {
   } = useQuery(GET_FOLLOWEDS, {
     variables: { username },
   });
+
+  const { data: dataCountAlbum, loading: loadingCountAlbum } = useQuery(
+    COUNT_ALBUM,
+    {
+      variables: { idUser },
+    }
+  );
 
   /*
   // Uncomment this fragment in order to check the number of followers in real time
@@ -64,21 +72,28 @@ export default function Followers(props) {
   };
 
   // Evitamos que se acceda al data.getFollowers antes que se haya cargado
-  if (loadingFollowers || loadingFolloweds) return null;
+  if (loadingFollowers || loadingFolloweds || loadingCountAlbum) return null;
   const { getFollowers } = dataFollowers;
   const { getFolloweds } = dataFolloweds;
+  const { countAlbums } = dataCountAlbum;
 
   return (
     <React.Fragment>
       <div className="followers">
         <p>
-          <span>{totalPublications}</span> publicaciones
+          <span>{totalPublications}</span> Publicaciones
+        </p>
+        <p>
+          <span>{countAlbums}</span> {countAlbums > 1 ? "Albumes" : "Album"}
         </p>
         <p className="link" onClick={openFollowers}>
-          <span>{size(getFollowers)}</span> seguidores
+          <span>{size(getFollowers)}</span> Seguidores
         </p>
         <p className="link" onClick={openFolloweds}>
-          <span>{size(getFolloweds)}</span> seguidos
+          <span>{size(getFolloweds)}</span> Seguidos
+        </p>
+        <p className="link">
+          <span>0</span> Bloqueados
         </p>
       </div>
       <ModalBasic show={showModal} setShow={setShowModal} title={titleModal}>

@@ -42,7 +42,7 @@ export default function CommentForm(props) {
         onChange={formik.handleChange}
         error={formik.errors.comment && true}
       />
-      <Button type="submit">Publicar</Button>
+      <Button type="submit">Comentar</Button>
     </Form>
   );
 }

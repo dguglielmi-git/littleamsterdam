@@ -16,6 +16,15 @@
   &__right {
     padding: 0 !important;
     height: 100%;
+
+    &__close {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      padding-right: 5px;
+      border: 1px solid $border-grey;
+
+    }
   }
 
   &__actionComments {

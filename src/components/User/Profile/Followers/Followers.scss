@@ -3,8 +3,11 @@
 .followers {
   display: flex;
   flex-direction: column;
+  
   p {
-    margin-right: 50px;
+    margin: 5px !important;
+    margin-right: 50px !important;
+    
     font-size: 16px;
     &.link:hover {
       cursor: pointer;

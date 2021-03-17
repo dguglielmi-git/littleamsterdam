@@ -1,14 +1,18 @@
 import React from "react";
-import { Modal, Grid } from "semantic-ui-react";
+import { Modal, Grid, Icon } from "semantic-ui-react";
 import CommentForm from "./CommentForm";
 import Comments from "./Comments";
-import Actions from "./Actions";
 import "./ModalPublication.scss";
 
 export default function ModalPublication(props) {
   const { show, setShow, publication } = props;
 
   const onClose = () => setShow(false);
+  var createAt = new Date(publication.createAt * 1);
+  var year = createAt.getUTCFullYear();
+  var month = (createAt.getUTCMonth() + 1).toString().padStart(2, "0");
+  var day = createAt.getUTCDate().toString().padStart(2, "0");
+  var datePublish = day + "/" + month + "/" + year;
 
   return (
     <Modal open={show} onClose={onClose} className="modal-publication">
@@ -19,13 +23,16 @@ export default function ModalPublication(props) {
           style={{ backgroundImage: `url("${publication.file}")` }}
         />
         <Grid.Column className="modal-publication__right" width={6}>
+          <div className="modal-publication__right__close">
+            <p>
+              <strong>Fecha Publicacion:</strong> {datePublish}
+            </p>
+            <Icon link name="close" size="big" onClick={onClose} />
+          </div>
           <Comments publication={publication} />
           <CommentForm publication={publication} />
         </Grid.Column>
       </Grid>
-      <div className="modal-publication__actionComments">
-        {/*<Actions publication={publication} /> */}
-      </div>
     </Modal>
   );
 }

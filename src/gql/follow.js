@@ -13,6 +13,7 @@ export const GET_FOLLOWERS = gql`
       username
       name
       email
+      avatar
     }
   }
 `;

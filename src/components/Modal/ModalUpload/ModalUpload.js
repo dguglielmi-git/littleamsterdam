@@ -40,6 +40,7 @@ export default function ModalUpload(props) {
       const result = await publish({
         variables: {
           file: fileUpload.file,
+          album: '0',
         },
       });
       const { data } = result;

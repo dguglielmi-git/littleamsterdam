@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import { Icon, Image } from "semantic-ui-react";
 import { Tooltip } from "primereact/tooltip";
-import { Link } from "react-router-dom";
-import useAuth from "../../../hooks/useAuth";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { useApolloClient } from "@apollo/client";
+import useAuth from "../../../hooks/useAuth";
 import useWindowDimensions from "../../../hooks/useWindowDimensions";
 import ImageNotFound from "../../../assets/notLogin.png";
 import { useQuery } from "@apollo/client";
 import { GET_USER } from "../../../gql/user";
-import "./Menu.scss";
+import SettingsForm from "../../User/Profile/SettingsForm";
 import ModalUpload from "../../Modal/ModalUpload";
+import ModalBasic from "../../Modal/ModalBasic";
 import Dropdown from "./Dropdown";
+import "./Menu.scss";
 
 export default function Menu() {
   const { auth, logout } = useAuth();
@@ -19,7 +20,10 @@ export default function Menu() {
   const [showModal, setShowModal] = useState(false);
   const history = useHistory();
   const client = useApolloClient();
-  const { data, loading, error } = useQuery(GET_USER, {
+  const [showModalBasic, setShowModalBasic] = useState(false);
+  const [titleModal, setTitleModal] = useState("");
+  const [childrenModal, setChildrenModal] = useState(null);
+  const { data, loading, error, refetch } = useQuery(GET_USER, {
     variables: { username: auth.username },
   });
 
@@ -32,6 +36,20 @@ export default function Menu() {
 
     logout();
     history.push("/");
+  };
+
+  const handlerModal = (type) => {
+    setTitleModal("");
+    setChildrenModal(
+      <SettingsForm
+        setShowModalBasic={setShowModalBasic}
+        setTitleModal={setTitleModal}
+        setChildrenModal={setChildrenModal}
+        getUser={getUser}
+        refetch={refetch}
+      />
+    );
+    setShowModalBasic(true);
   };
 
   return (
@@ -65,9 +83,10 @@ export default function Menu() {
                 name="setting"
                 size="large"
                 color="blue"
+                onClick={() => handlerModal()}
               />
             </div>
-            <div classname="menu__button shutdown">
+            <div className="menu__button shutdown">
               <Tooltip target=".shutdown" position="bottom" />
               <Icon
                 className="shutdown"
@@ -81,11 +100,18 @@ export default function Menu() {
           </React.Fragment>
         ) : (
           <div className="burger">
-            <Dropdown />
+            <Dropdown handlerModal={handlerModal}/>
           </div>
         )}
       </div>
       <ModalUpload show={showModal} setShow={setShowModal} />
+      <ModalBasic
+        show={showModalBasic}
+        setShow={setShowModalBasic}
+        title={titleModal}
+      >
+        {childrenModal}
+      </ModalBasic>
     </React.Fragment>
   );
 }

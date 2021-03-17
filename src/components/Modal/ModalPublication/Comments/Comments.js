@@ -21,9 +21,10 @@ export default function Comments(props) {
       stopPolling();
     };
   }, [startPolling, stopPolling]);
-  
+
   if (loading) return null;
   const { getComments } = data;
+
   return (
     <div className="comments">
       {map(getComments, (comment, index) => (

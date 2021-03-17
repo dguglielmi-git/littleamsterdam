@@ -1,0 +1,17 @@
+@import "../../../scss/index.scss";
+
+.album {
+    &__addButton {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-left: 1em;
+        margin-bottom: 1em;
+
+        p {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}

@@ -27,6 +27,7 @@ export default function Profile(props) {
 
   if (error) return <UserNotFound />;
   const { getUser } = data;
+  
 
   const handlerModal = (type) => {
     switch (type) {
@@ -84,6 +85,7 @@ export default function Profile(props) {
           <Followers
             username={username}
             totalPublications={totalPublications}
+            idUser={getUser.id}
           />
         </Grid.Column>
       </Grid>

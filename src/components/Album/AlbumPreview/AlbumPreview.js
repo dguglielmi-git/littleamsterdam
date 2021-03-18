@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { Image, Icon, Button, Confirm } from "semantic-ui-react";
+import { Image, Icon, Confirm } from "semantic-ui-react";
 import ImgNotFound from "../../../assets/imgNotFound.png";
+import { DELETE_ALBUM } from "../../../gql/album";
 import { Tooltip } from "primereact/tooltip";
 import { useMutation } from "@apollo/client";
-import { DELETE_ALBUM } from "../../../gql/album";
 import { toast } from "react-toastify";
 import "./AlbumPreview.scss";
 
 export default function PreviewPublication(props) {
-  const { album, isAlbum, refetchAlbum } = props;
+  const { album, isAlbum, refetchAlbum, handleAlbumSelect } = props;
   const [showConfig, setShowConfirm] = useState(false);
   const [removeAlbum] = useMutation(DELETE_ALBUM);
 
@@ -54,7 +54,7 @@ export default function PreviewPublication(props) {
         <Image
           className="preview-album__image"
           src={album.picture === "none" ? ImgNotFound : album.picture}
-          onClick={() => console.log(album)}
+          onClick={() => handleAlbumSelect(album.id)}
         />
       </div>
       <Confirm

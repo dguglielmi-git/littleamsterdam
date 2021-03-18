@@ -10,8 +10,8 @@ export const PUBLISH = gql`
 `;
 
 export const GET_PUBLICATIONS = gql`
-  query getPublications($username: String!) {
-    getPublications(username: $username) {
+  query getPublications($username: String!, $idAlbum: String) {
+    getPublications(username: $username, idAlbum: $idAlbum) {
       id
       idUser
       file

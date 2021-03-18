@@ -13,7 +13,7 @@ export default function User() {
   const { data, loading, startPolling, stopPolling } = useQuery(
     GET_PUBLICATIONS,
     {
-      variables: { username },
+      variables: { username,  },
     }
   );
 

@@ -11,9 +11,15 @@ const routes = [
     exact: true,
   },
   {
-    path: "/:username",
+    path: "/profile/:username",
     layout: LayoutBasic,
     component: User,
+    exact: true,
+  },
+  {
+    path: "/socialMain",
+    layout: LayoutBasic,
+    component: Home,
     exact: true,
   },
   {

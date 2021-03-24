@@ -1,12 +1,16 @@
-import React, { useState } from "react";
-import { Grid, Tab } from "semantic-ui-react";
+import React from "react";
 import { map } from "lodash";
-import PreviewPublication from "./PreviewPublication";
 import AlbumList from "../Album/AlbumList";
+import { Grid, Tab } from "semantic-ui-react";
+import PreviewPublication from "./PreviewPublication";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 import "./Publications.scss";
 
 export default function Publications(props) {
   const { getPublications } = props;
+  const { width } = useWindowDimensions();
+
+  const getCols = () => (width > 600 ? 4 : 1);
 
   const panes = [
     {
@@ -22,11 +26,11 @@ export default function Publications(props) {
       ),
     },
   ];
-  
+
   const showPublications = () => {
     return (
       <Tab.Pane attached={false}>
-        <Grid columns={4}>
+        <Grid columns={getCols()}>
           {map(getPublications, (publication, index) => (
             <Grid.Column key={index}>
               <PreviewPublication publication={publication} />

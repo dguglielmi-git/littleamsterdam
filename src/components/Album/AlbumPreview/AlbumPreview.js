@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Image, Icon, Confirm } from "semantic-ui-react";
 import ImgNotFound from "../../../assets/imgNotFound.png";
+import { Image, Icon, Confirm } from "semantic-ui-react";
 import { DELETE_ALBUM } from "../../../gql/album";
-import { Tooltip } from "primereact/tooltip";
 import { useMutation } from "@apollo/client";
+import { Tooltip } from "primereact/tooltip";
 import { toast } from "react-toastify";
 import "./AlbumPreview.scss";
 
@@ -12,10 +12,11 @@ export default function PreviewPublication(props) {
   const [showConfig, setShowConfirm] = useState(false);
   const [removeAlbum] = useMutation(DELETE_ALBUM);
 
-  const handleConfirm = () => {
-    setShowConfirm(true);
-  };
+  const CONFIRM_DELETE = "Desea eliminar el album?";
+  const ERROR_ON_DELETE = "Error al intentar eliminar el Album";
+  const ALBUM_DELETED = "El album se ha eliminado correctamente";
 
+  const handleConfirm = () => setShowConfirm(true);
   const closeConfirm = () => setShowConfirm(false);
 
   const deleteAlbum = async () => {
@@ -23,10 +24,10 @@ export default function PreviewPublication(props) {
       await removeAlbum({
         variables: { idAlbum: album.id },
       });
-      toast.success("El album se ha eliminado correctamente");
+      toast.success(ALBUM_DELETED);
       refetchAlbum();
     } catch (error) {
-      toast.error("Error al intentar eliminar el Album");
+      toast.error(ERROR_ON_DELETE);
     }
     setShowConfirm(false);
   };
@@ -51,17 +52,19 @@ export default function PreviewPublication(props) {
             </div>
           )}
         </div>
-        <Image
-          className="preview-album__image"
-          src={album.picture === "none" ? ImgNotFound : album.picture}
-          onClick={() => handleAlbumSelect(album.id)}
-        />
+        <div className="preview-album__image-box">
+          <Image
+            className="preview-album__image"
+            src={album.picture === "none" ? ImgNotFound : album.picture}
+            onClick={() => handleAlbumSelect(album.id)}
+          />
+        </div>
       </div>
       <Confirm
         open={showConfig}
         onCancel={closeConfirm}
         onConfirm={deleteAlbum}
-        content="Desea eliminar el album?"
+        content={CONFIRM_DELETE}
         size="mini"
       />
     </React.Fragment>

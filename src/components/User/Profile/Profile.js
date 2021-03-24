@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { Grid, Image, Container } from "semantic-ui-react";
-import "./Profile.scss";
-import { GET_USER } from "../../../gql/user";
+import ImageNotFound from "../../../assets/notLogin.png";
+import ModalBasic from "../../Modal/ModalBasic";
+import { Grid, Image } from "semantic-ui-react";
 import useAuth from "../../../hooks/useAuth";
 import UserNotFound from "../UserNotFound";
-import ModalBasic from "../../Modal/ModalBasic";
-import AvatarForm from "../AvatarForm";
-import ImageNotFound from "../../../assets/notLogin.png";
-import { useQuery } from "@apollo/client";
 import HeaderProfile from "./HeaderProfile";
 import SettingsForm from "./SettingsForm";
+import { GET_USER } from "../../../gql/user";
+import { useQuery } from "@apollo/client";
+import AvatarForm from "../AvatarForm";
 import Followers from "./Followers";
+import "./Profile.scss";
 
 export default function Profile(props) {
   const { username, totalPublications } = props;
@@ -27,7 +27,6 @@ export default function Profile(props) {
 
   if (error) return <UserNotFound />;
   const { getUser } = data;
-  
 
   const handlerModal = (type) => {
     switch (type) {
@@ -90,10 +89,9 @@ export default function Profile(props) {
         </Grid.Column>
       </Grid>
 
-        <ModalBasic show={showModal} setShow={setShowModal} title={titleModal}>
-          {childrenModal}
-        </ModalBasic>
-
+      <ModalBasic show={showModal} setShow={setShowModal} title={titleModal}>
+        {childrenModal}
+      </ModalBasic>
     </React.Fragment>
   );
 }

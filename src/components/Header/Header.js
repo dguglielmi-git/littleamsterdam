@@ -12,7 +12,7 @@ export default function Header() {
       <Container>
         <Grid>
           <Grid.Column width={3} className="header__logo">
-            <Link to="/">
+            <Link to="/socialMain">
               <Image src={Logo} alt="LittleAmsterdam" />
             </Link>
           </Grid.Column>

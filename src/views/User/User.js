@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Container } from "semantic-ui-react";
 import { useParams } from "react-router-dom";
 import { size } from "lodash";
 import { useQuery } from "@apollo/client";

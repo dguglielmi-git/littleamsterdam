@@ -38,7 +38,7 @@ export default function Feed() {
       <div className="feed">
         {map(getPublicationsFolloweds, (publication, index) => (
           <div key={index} className="feed__box">
-            <Link to={`/${publication.idUser.username}`}>
+            <Link to={`/profile/${publication.idUser.username}`}>
               <div className="feed__box-user">
                 <Image
                   src={publication.idUser.avatar || ImageNotFound}

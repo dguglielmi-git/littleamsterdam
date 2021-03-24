@@ -3,6 +3,19 @@
 .preview-publication {
     height: 100%;
 
+    
+    @media (min-width: 300px) {
+        display: flex;
+        justify-content: center;
+        
+    }
+    @media (min-width: 600px) {
+        display: flex;
+        justify-content: flex-start;
+    }
+    display: flex;
+    justify-content: center;
+
     &:hover {
         cursor: pointer;
         opacity: 0.9;
@@ -12,5 +25,6 @@
         width: 300px;
         height: 200px;
     }
+
 }
 

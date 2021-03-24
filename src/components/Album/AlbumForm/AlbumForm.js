@@ -1,10 +1,10 @@
 import React from "react";
-import { useFormik } from "formik";
-import { Form, TextArea, Button } from "semantic-ui-react";
 import * as Yup from "yup";
+import { useFormik } from "formik";
 import { toast } from "react-toastify";
 import { useMutation } from "@apollo/client";
 import { ADD_ALBUM } from "../../../gql/album";
+import { Form, TextArea, Button } from "semantic-ui-react";
 import "./AlbumForm.scss";
 
 export default function AlbumForm(props) {

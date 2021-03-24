@@ -4,18 +4,20 @@ import AlbumForm from "../AlbumForm";
 import AlbumPreview from "../AlbumPreview";
 import useAuth from "../../../hooks/useAuth";
 import ModalBasic from "../../Modal/ModalBasic";
-import { useParams } from "react-router-dom";
 import { Grid, Icon } from "semantic-ui-react";
+import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_USER } from "../../../gql/user";
 import { GET_ALBUMS } from "../../../gql/album";
 import { GET_PUBLICATIONS } from "../../../gql/publication";
+import useWindowDimensions from "../../../hooks/useWindowDimensions";
 import PreviewPublication from "../../Publications/PreviewPublication";
 import "./AlbumList.scss";
 
 export default function AlbumList() {
   const { auth } = useAuth();
   const { username } = useParams();
+  const { width } = useWindowDimensions();
   const [isAlbum, setIsAlbum] = useState(false);
   const [titleModal, setTitleModal] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -73,32 +75,32 @@ export default function AlbumList() {
     refetchPublication();
   };
 
-  const ButtonsAlbumSelected = () => {
+  const ButtonBack = () => {
     return (
-      <div className="album__goBack">
-        <Icon
-          className="icons"
-          link
-          name="arrow alternate circle left outline"
-          size="large"
-          color="blue"
-          onClick={() => setAlbumSelected(false)}
-        >
-          Volver
-        </Icon>
-        <Icon
-          className="icons"
-          link
-          name="cloud upload"
-          size="large"
-          color="blue"
-        >
-          {" "}
-          Subir Foto
-        </Icon>
-      </div>
+      <Icon
+        className="icons"
+        link
+        name="arrow alternate circle left outline"
+        size="large"
+        color="blue"
+        onClick={() => setAlbumSelected(false)}
+      />
     );
   };
+
+  const ButtonAddPicture = () => {
+    return (
+      <Icon
+        className="icons"
+        link
+        name="cloud upload"
+        size="large"
+        color="blue"
+      />
+    );
+  };
+
+  const getCols = () => (width > 600 ? 4 : 1);
 
   const ButtonAddAlbum = () => {
     return (
@@ -111,28 +113,33 @@ export default function AlbumList() {
 
   return (
     <div className="album">
-      {getAlbums ? (
+      {size(getAlbums) > 0 ? (
         <React.Fragment>
-          {isAlbum && (
-            <>{albumSelected ? <ButtonsAlbumSelected /> : <ButtonAddAlbum />}</>
+          {albumSelected && (
+            <div className="album__goBack">
+              <ButtonBack /> {isAlbum && <ButtonAddPicture />}{" "}
+            </div>
           )}
           {!albumSelected ? (
-            <Grid columns={4}>
-              {map(getAlbums, (album, index) => (
-                <Grid.Column key={index}>
-                  <AlbumPreview
-                    album={album}
-                    isAlbum={isAlbum}
-                    refetchAlbum={refetchAlbum}
-                    handleAlbumSelect={handleAlbumSelect}
-                  />
-                </Grid.Column>
-              ))}
-            </Grid>
+            <>
+              {isAlbum && <ButtonAddAlbum />}
+              <Grid columns={getCols()}>
+                {map(getAlbums, (album, index) => (
+                  <Grid.Column key={index}>
+                    <AlbumPreview
+                      album={album}
+                      isAlbum={isAlbum}
+                      refetchAlbum={refetchAlbum}
+                      handleAlbumSelect={handleAlbumSelect}
+                    />
+                  </Grid.Column>
+                ))}
+              </Grid>
+            </>
           ) : (
             <>
               {getPublications && size(getPublications) > 0 ? (
-                <Grid columns={4}>
+                <Grid columns={getCols}>
                   {map(getPublications, (publication, index) => (
                     <Grid.Column key={index}>
                       <PreviewPublication publication={publication} />

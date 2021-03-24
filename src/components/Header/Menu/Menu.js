@@ -16,7 +16,7 @@ import "./Menu.scss";
 
 export default function Menu() {
   const { auth, logout } = useAuth();
-  const { width } = useWindowDimensions();
+  const { width} = useWindowDimensions();
   const [showModal, setShowModal] = useState(false);
   const history = useHistory();
   const client = useApolloClient();
@@ -57,7 +57,7 @@ export default function Menu() {
       <div className="menu">
         {width > 500 ? (
           <React.Fragment>
-            <Link to={`${auth.username}`}>
+            <Link to={`/profile/${auth.username}`}>
               <Image
                 src={getUser.avatar ? getUser.avatar : ImageNotFound}
                 avatar

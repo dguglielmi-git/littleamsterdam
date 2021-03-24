@@ -8,7 +8,13 @@
         opacity: 0.9;
     }
 
+    &__image-box {
+        display: flex;
+        justify-content: center;
+    }
+
     &__image {
+        align-content: center;
         width: 200px;
         height: 200px;
     }

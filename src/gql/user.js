@@ -1,69 +1,76 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export const REGISTER = gql`
-  mutation register($input: UserInput) {
-    register(input: $input) {
-      id
-      name
-      username
-      email
-      password
-    }
-  }
+	mutation register($input: UserInput) {
+		register(input: $input) {
+			id
+			name
+			username
+			email
+			password
+		}
+	}
 `;
 
 export const LOGIN = gql`
-  mutation login($input: LoginInput) {
-    login(input: $input) {
-      token
-    }
-  }
+	mutation login($input: LoginInput) {
+		login(input: $input) {
+			token
+		}
+	}
 `;
 
 export const GET_USER = gql`
-  query getUser($id: ID, $username: String) {
-    getUser(id: $id, username: $username) {
-      id
-      name
-      username
-      email
-      siteWeb
-      description
-      password
-      avatar
-      createAt
-      roleName
-    }
-  }
+	query getUser($id: ID, $username: String) {
+		getUser(id: $id, username: $username) {
+			id
+			name
+			username
+			email
+			siteWeb
+			description
+			password
+			avatar
+			createAt
+			roleName
+			language
+		}
+	}
+`;
+
+export const UPDATE_LANGUAGE = gql`
+	mutation updateLanguage($input: String!) {
+		updateLanguage(input: $input)
+}
 `;
 
 export const UPDATE_AVATAR = gql`
-  mutation updateAvatar($file: Upload) {
-    updateAvatar(file: $file) {
-      status
-      urlAvatar
-    }
-  }
+	mutation updateAvatar($file: Upload) {
+		updateAvatar(file: $file) {
+			status
+			urlAvatar
+		}
+	}
 `;
 
 export const DELETE_AVATAR = gql`
-  mutation deleteAvatar {
-    deleteAvatar
-  }
+	mutation deleteAvatar {
+		deleteAvatar
+	}
 `;
 
 export const UPDATE_USER = gql`
-  mutation updateUser($input: UserUpdateInput) {
-    updateUser(input: $input)
-  }
+	mutation updateUser($input: UserUpdateInput) {
+		updateUser(input: $input)
+	}
 `;
 
 export const SEARCH = gql`
-  query search($search: String) {
-    search(search: $search) {
-      name
-      username
-      avatar
-    }
-  }
+	query search($search: String) {
+		search(search: $search) {
+			name
+			username
+			avatar
+		}
+	}
 `;

@@ -91,7 +91,7 @@ export default function Menu() {
 							/>
 						</div>
 						<div className="menu__button shutdow">
-							<DropCommon />
+							<DropCommon getUser={getUser} />
 						</div>
 					</>
 				) : (

@@ -6,9 +6,8 @@ const initialState = {
 		: 'gb',
 };
 
-
 function language(state = initialState, action) {
-	if (action.type.length === 2) {
+		if (action.type.length === 2) {
 		state = {
 			...state,
 			flag: action.type,

@@ -32,7 +32,6 @@ export default function LoginForm() {
 						input: formData,
 					},
 				});
-
 				const { token } = data.login;
 				setToken(token);
 				setUser(decodeToken(token));

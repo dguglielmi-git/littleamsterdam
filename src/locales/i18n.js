@@ -62,4 +62,5 @@ i18n.use(LanguageDetector).use(initReactI18next).init({
 
 i18n.changeLanguage();
 
+
 export default i18n;

@@ -1,16 +1,16 @@
-import React from "react";
-import "./UserNotFound.scss";
-import { Link } from "react-router-dom";
+import React from 'react';
+import './UserNotFound.scss';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import '../../../locales/i18n';
 
 export default function UserNotFound() {
-  return (
-    <div className="user-not-found">
-      <p>Usuario no encontrado.</p>
-      <p>
-        Es posible que el enlace que has seguido sea incorrecto o que el usuario
-        se haya eliminado.
-      </p>
-      <Link to="/">Volver al inicio</Link>
-    </div>
-  );
+	const { t } = useTranslation();
+	return (
+		<div className="user-not-found">
+			<p>{t('userNotFoundMsg')}</p>
+			<p>{t('userNotFoundLinkErrorMsg')}</p>
+			<Link to="/">{t('userNotFoundGoBack')}</Link>
+		</div>
+	);
 }

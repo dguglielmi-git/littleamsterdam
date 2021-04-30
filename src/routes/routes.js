@@ -17,7 +17,7 @@ const routes = [
     exact: true,
   },
   {
-    path: "/socialMain",
+    path: "/social",
     layout: LayoutBasic,
     component: Home,
     exact: true,

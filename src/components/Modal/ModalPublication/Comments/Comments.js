@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { Image } from "semantic-ui-react";
 import { map } from "lodash";
+import { Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_COMMENTS } from "../../../../gql/comment";

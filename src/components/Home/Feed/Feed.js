@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Image } from "semantic-ui-react";
 import { map } from "lodash";
 import { Link } from "react-router-dom";
+import { Image } from "semantic-ui-react";
 import { useQuery } from "@apollo/client";
 import { GET_PUBLICATIONS_FOLLOWEDS } from "../../../gql/publication";
 import Action from "../../Modal/ModalPublication/Actions";

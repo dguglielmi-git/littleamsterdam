@@ -10,9 +10,9 @@ import 'flag-icon-css/css/flag-icon.css';
 
 const Dropdown = (props) => {
 	const [updateLanguage] = useMutation(UPDATE_LANGUAGE);
-	const { getUser } = props;
+	const { getUser, refetch } = props;
 	const { resources: langs } = languages;
-	const trigger = <span class={`flag-icon flag-icon-${props.lang.flag}`} />;
+	const trigger = <span className={`flag-icon flag-icon-${props.lang.flag}`} />;
 
 	useEffect(() => {
 		if (getUser) {
@@ -26,8 +26,8 @@ const Dropdown = (props) => {
 	}, []);
 
 	const handlerLang = async (lang, flag) => {
-		props.dispatch(changeLangAsync(flag));
 		i18n.changeLanguage(lang);
+		props.dispatch(changeLangAsync(flag));
 
 		if (getUser) {
 			// Update DB
@@ -37,6 +37,7 @@ const Dropdown = (props) => {
 						input: lang,
 					},
 				});
+				refetch();
 			} catch (error) {
 				console.error(error);
 			}

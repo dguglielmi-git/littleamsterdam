@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
+import { connect } from 'react-redux';
 import { useMutation } from '@apollo/client';
 import { Form, Button, Image } from 'semantic-ui-react';
 import { useTranslation } from 'react-i18next';
@@ -12,7 +13,7 @@ import Dropdown from '../../Common/Dropdown';
 import '../../../locales/i18n';
 import './LoginForm.scss';
 
-export default function LoginForm() {
+const LoginForm = (props) => {
 	const [error, setError] = useState('');
 	const [login] = useMutation(LOGIN);
 	const { t } = useTranslation();
@@ -35,6 +36,7 @@ export default function LoginForm() {
 				const { token } = data.login;
 				setToken(token);
 				setUser(decodeToken(token));
+				console.log(props);
 			} catch (error) {
 				setError(error.message);
 			}
@@ -73,10 +75,16 @@ export default function LoginForm() {
 			{error && <p className="submit-error">{error}</p>}
 		</Form>
 	);
-}
+};
 function initialValues() {
 	return {
 		email: '',
 		password: '',
 	};
 }
+
+const mapStateToProps = (state) => {
+	return state;
+};
+
+export default connect(mapStateToProps)(LoginForm);

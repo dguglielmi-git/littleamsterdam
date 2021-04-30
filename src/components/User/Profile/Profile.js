@@ -27,7 +27,6 @@ export default function Profile(props) {
 
 	// Avoid to render twice
 	if (loading) return null;
-	console.log(data);
 
 	if (error) return <UserNotFound />;
 	const { getUser } = data;

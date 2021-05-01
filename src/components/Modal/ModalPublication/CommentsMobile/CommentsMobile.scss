@@ -1,0 +1,10 @@
+.comments-mobile   {
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+
+    &__header {
+        display: flex;
+        height: 30px;
+    }
+}

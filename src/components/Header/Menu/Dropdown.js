@@ -26,7 +26,7 @@ export default function DropdownMenu(props) {
 
 	const goHome = () => setRedirect(!(username === auth.username));
 
-	if (redirect) return <Redirect to={`${auth.username}`} />;
+	if (redirect) return <Redirect to={`/profile/${auth.username}`} />;
 
 	return (
 		<Dropdown trigger={trigger} pointing="top right" icon={null}>

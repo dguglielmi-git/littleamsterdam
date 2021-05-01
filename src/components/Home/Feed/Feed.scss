@@ -21,6 +21,9 @@
 .feed {
   padding-top: 50px;
   height: calc(100vh - 80px);
+  display: flex;
+  width: 100%;
+  flex-direction: column;
 
   @include cellphone {
     width: 100% !important;

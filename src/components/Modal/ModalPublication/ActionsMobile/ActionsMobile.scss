@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital@1&family=Roboto:ital@1&display=swap');
+.actions-mobile {
+	display: flex;
+	padding-left: 10px;
+	align-items: center;
+	width: 100%;
+	height: 50px;
+
+	&__likes {
+		display: flex;
+		width: 100px;
+        bottom: 20px;
+        text-align: center;
+		justify-content: space-around;
+        font-family: Roboto, sans-serif;
+        font-size: 11 px;
+        color: #4186C8;
+	}
+
+	&__comments {
+		display: flex;
+		position: absolute;
+		justify-content: flex-end;
+		right: 10px;
+		font-family: Roboto, sans-serif;
+        font-size: 10px;
+        color: #4186C8;
+	}
+}

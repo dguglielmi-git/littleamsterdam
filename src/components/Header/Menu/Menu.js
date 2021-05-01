@@ -16,6 +16,10 @@ import ImageNotFound from '../../../assets/notLogin.png';
 import DropCommon from '../../Common/Dropdown';
 import '../../../locales/i18n';
 import 'flag-icon-css/css/flag-icon.css';
+import { MOBILE_RES } from '../../../utils/constants';
+import ButtonUpload from './ButtonUpload';
+import ButtonSettings from './ButtonSettings';
+import ButtonLogout from './ButtonLogout';
 import './Menu.scss';
 
 export default function Menu() {
@@ -59,44 +63,26 @@ export default function Menu() {
 	return (
 		<>
 			<div className="menu">
-				{width > 500 ? (
+				{width > MOBILE_RES ? (
 					<>
 						<Link to={`/profile/${auth.username}`}>
 							<Image src={getUser.avatar ? getUser.avatar : ImageNotFound} avatar />
 						</Link>
-						<div className="menu__button upload" data-pr-tooltip={t('menuUploadImage')}>
-							<Tooltip target=".upload" position="bottom" />
-							<Icon name="upload" size="large" color="blue" onClick={() => setShowModal(true)} />
-						</div>
-						<div className="menu__button setting">
-							<Tooltip target=".setting" position="bottom" />
-							<Icon
-								className="setting"
-								data-pr-tooltip={t('menuAccountSettings')}
-								name="setting"
-								size="large"
-								color="blue"
-								onClick={() => handlerModal()}
-							/>
-						</div>
-						<div className="menu__button shutdown">
-							<Tooltip target=".shutdown" position="bottom" />
-							<Icon
-								className="shutdown"
-								data-pr-tooltip={t('menuLogoff')}
-								name="setting"
-								size="large"
-								color="blue"
-								onClick={() => onLogout()}
-							/>
-						</div>
+						<ButtonUpload setShowModal={setShowModal} t={t} />
+						<ButtonSettings handlerModal={handlerModal} t={t} />
+						<ButtonLogout onLogout={onLogout} t={t} />
 						<div className="menu__button shutdow">
 							<DropCommon getUser={getUser} refetch={refetch} />
 						</div>
 					</>
 				) : (
-					<div className="burger">
-						<Dropdown handlerModal={handlerModal} />
+					<div className="mobile">
+						<div className="mobile__burger">
+							<Dropdown handlerModal={handlerModal} />
+						</div>
+						<div className="mobile__lang">
+							<DropCommon getUser={getUser} refetch={refetch} />
+						</div>
 					</div>
 				)}
 			</div>

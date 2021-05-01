@@ -1,32 +1,31 @@
-@import "../../../../scss/index.scss";
+@import '../../../../scss/index.scss';
 
 .actions {
-  align-items: center;
-  padding: 0 10px;
+	align-items: center;
+	padding: 0 10px;
 
+	i {
+		font-size: 16px !important;
 
-  i {
-    font-size: 16px !important;
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
+		&:hover {
+			cursor: pointer;
+		}
+	}
 }
 
 .actions-cell {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  padding: 0 10px;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	width: 100%;
+	padding: 0 10px;
 
-  i {
-    font-size: 16px !important;
-    margin-top: 10px;
+	i {
+		font-size: 16px !important;
+		margin-top: 10px;
 
-    &:hover {
-      cursor: pointer;
-    }
-  }
+		&:hover {
+			cursor: pointer;
+		}
+	}
 }

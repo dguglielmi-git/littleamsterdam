@@ -4,9 +4,12 @@ import { Grid, Image, Container } from "semantic-ui-react";
 import Logo from "../../assets/Littleamsterdam.png";
 import Search from "../Header/Search";
 import Menu from "../Header/Menu";
+import {MOBILE_RES} from "../../utils/constants"
+import useWindowDimensions from "../../hooks/useWindowDimensions"
 import "./Header.scss";
 
 export default function Header() {
+  const {width} = useWindowDimensions();
   return (
     <div className="header">
       <Container>
@@ -16,10 +19,10 @@ export default function Header() {
               <Image src={Logo} alt="LittleAmsterdam" />
             </Link>
           </Grid.Column>
-          <Grid.Column width={10}>
+          <Grid.Column width={width <MOBILE_RES ? 9 : 9}>
             <Search />
           </Grid.Column>
-          <Grid.Column width={3}>
+          <Grid.Column width={width < MOBILE_RES ? 4 : 4}>
             <div className="header__menu">
               <Menu />
             </div>

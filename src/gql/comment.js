@@ -13,6 +13,7 @@ export const GET_COMMENTS = gql`
   query getComments($idPublication: ID!) {
     getComments(idPublication: $idPublication) {
       comment
+      createAt
       idUser {
         username
         avatar

@@ -1,17 +1,28 @@
-@import "../../../scss/index.scss";
+@import '../../../scss/index.scss';
 
 .menu {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  margin-left: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	margin-left: 5px;
 
-  &:hover {
-    cursor: pointer;
+	&:hover {
+		cursor: pointer;
+	}
+	&__button {
+		display: flex;
+	}
+}
+.mobile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__burger {
+    width: 40px;
   }
-  &__button {
-    display: flex;
-    
+
+  &__lang {
+    width: 40px;
   }
-  
 }

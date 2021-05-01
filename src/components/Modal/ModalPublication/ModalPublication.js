@@ -1,43 +1,57 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Modal, Grid, Icon } from 'semantic-ui-react';
-import CommentForm from './CommentForm';
+import { Modal, Grid } from 'semantic-ui-react';
+import { formatDate } from '../../../utils/util';
 import Comments from './Comments';
+import CommentForm from './CommentForm';
+import ModalLeftCol from './ModalLeftCol';
+import ModalPubTitle from './ModalPubTitle';
+import useWindowDimensions from '../../../hooks/useWindowDimensions';
+import { MOBILE_RES } from '../../../utils/constants';
+import Actions from './Actions';
+import ActionsMobile from './ActionsMobile';
+import CommentsMobile from './CommentsMobile';
 import '../../../locales/i18n';
 import './ModalPublication.scss';
 
 export default function ModalPublication(props) {
 	const { t } = useTranslation();
+	const { width } = useWindowDimensions();
+	const [onComment, setOnComment] = useState(false);
 	const { show, setShow, publication } = props;
-
 	const onClose = () => setShow(false);
-	var createAt = new Date(publication.createAt * 1);
-	var year = createAt.getUTCFullYear();
-	var month = (createAt.getUTCMonth() + 1).toString().padStart(2, '0');
-	var day = createAt.getUTCDate().toString().padStart(2, '0');
-	var datePublish = day + '/' + month + '/' + year;
+	let datePublish = formatDate(new Date(publication.createAt * 1));
 
 	return (
-		<Modal open={show} onClose={onClose} className="modal-publication">
-			<Grid>
-				<Grid.Column
-					className="modal-publication__left"
-					width={10}
-					style={{ backgroundImage: `url("${publication.file}")` }}
-				/>
-
-				<Grid.Column className="modal-publication__right" width={6}>
-					<div className="modal-publication__right__close">
-						<p>
-							<strong>{t('modalPublicationPublishDate')}</strong> {datePublish}
-						</p>
-						<Icon link name="close" size="big" onClick={onClose} />
-					</div>
-
-					<Comments publication={publication} />
-					<CommentForm publication={publication} />
-				</Grid.Column>
-			</Grid>
-		</Modal>
+		<>
+			{width > MOBILE_RES ? (
+				<Modal open={show} onClose={onClose} className="modal-publication">
+					<Grid>
+						<ModalLeftCol publication={publication} />
+						<Grid.Column className="modal-publication__right" width={6}>
+							<ModalPubTitle datePublish={datePublish} onClose={onClose} t={t} />
+							<Comments publication={publication} />
+							<CommentForm publication={publication} />
+						</Grid.Column>
+					</Grid>
+				</Modal>
+			) : (
+				<>
+					{!onComment ? (
+						<Modal open={show} onClose={onClose} className="mobile-publication">
+							<div className="mobile-publication__photo">
+								<img src={publication.file} alt="" height="300px" />
+							</div>
+							{/*<ActionsMobile setOnComment={setOnComment} />*/}
+							<Actions publication={publication} onComment={onComment} setOnComment={setOnComment} />
+						</Modal>
+					) : (
+						<Modal open={show} onClose={onClose} className="mobile-comments">
+							<CommentsMobile publication={publication} setOnComment={setOnComment} />
+						</Modal>
+					)}
+				</>
+			)}
+		</>
 	);
 }

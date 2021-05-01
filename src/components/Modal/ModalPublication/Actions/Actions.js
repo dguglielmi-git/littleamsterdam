@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
-import { Icon, Button, Label } from 'semantic-ui-react';
 import useWindowDimensions from '../../../../hooks/useWindowDimensions';
 import { useTranslation } from 'react-i18next';
 import { useMutation, useQuery } from '@apollo/client';
+import { MOBILE_RES } from '../../../../utils/constants';
 import {
-	ADD_LIKE,
-	ADD_NOT_LIKE,
-	ADD_TRASH,
 	IS_LIKE,
 	IS_NOT_LIKE,
 	IS_TRASH,
@@ -17,225 +14,124 @@ import {
 	COUNT_NOT_LIKE,
 	COUNT_TRASH,
 } from '../../../../gql/like';
+import ButtonLike from './ButtonLike';
+import ButtonNotLike from './ButtonNotLike';
+import ButtonTrash from './ButtonTrash';
+import ActionsMobile from '../ActionsMobile';
 import '../../../../locales/i18n';
 import './Actions.scss';
 
 export default function Actions(props) {
+	const { publication, setOnComment, onComment } = props;
 	const { t } = useTranslation();
-	const { publication } = props;
-	const [loadingAction, setLoadingAction] = useState(false);
 	const { width } = useWindowDimensions();
-	const [addLike] = useMutation(ADD_LIKE);
-	const [addNotLike] = useMutation(ADD_NOT_LIKE);
-	const [addTrash] = useMutation(ADD_TRASH);
+	const [saving, setSaving] = useState(false);
 	const [deleteLike] = useMutation(DELETE_LIKE);
 	const [deleteNotLike] = useMutation(DELETE_NOT_LIKE);
 	const [deleteTrash] = useMutation(DELETE_TRASH);
 
-	const { loading, refetch } = useQuery(IS_LIKE, {
-		variables: {
-			idPublication: publication.id,
-		},
-	});
-
-	const { loading: loadingNotLike, refetch: refetchNotLike } = useQuery(IS_NOT_LIKE, {
-		variables: {
-			idPublication: publication.id,
-		},
-	});
-
-	const { loading: loadingTrash, refetch: refetchTrash } = useQuery(IS_TRASH, {
-		variables: {
-			idPublication: publication.id,
-		},
-	});
-
-	const { data: dataCount, loading: loadingCount, refetch: refetchCount } = useQuery(COUNT_LIKE, {
-		variables: {
-			idPublication: publication.id,
-		},
-	});
-
-	const { data: dataCountNotLike, loading: loadingCountNotLike, refetch: refetchCountNotLike } = useQuery(
-		COUNT_NOT_LIKE,
-		{
+	// Generic function
+	const useQueries = (query) =>
+		useQuery(query, {
 			variables: {
 				idPublication: publication.id,
 			},
-		}
-	);
+		});
 
-	const { data: dataCountTrash, loading: loadingCountTrash, refetch: refetchCountTrash } = useQuery(COUNT_TRASH, {
-		variables: {
-			idPublication: publication.id,
-		},
-	});
+	const { loading: loadingLike, refetch: refetchLike } = useQueries(IS_LIKE);
+	const { loading: loadingTrash, refetch: refetchTrash } = useQueries(IS_TRASH);
+	const { loading: loadingNotLike, refetch: refetchNotLike } = useQueries(IS_NOT_LIKE);
 
-	const onAddLike = async () => {
-		setLoadingAction(true);
-		try {
-			await addLike({
-				variables: {
-					idPublication: publication.id,
-				},
-			});
-			refetch();
-			refetchCount();
-		} catch (error) {
-			console.log(error);
-		}
-		setLoadingAction(false);
-	};
+	const { data: dataCountLikes, loading: loadingCount, refetch: refetchCount } = useQueries(COUNT_LIKE);
+	const { data: dataCountNL, loading: loadingCountNL, refetch: refetchCountNL } = useQueries(COUNT_NOT_LIKE);
+	const { data: dataCountTrash, loading: loadingCountTrash, refetch: refetchCountTrash } = useQueries(COUNT_TRASH);
 
-	const onAddNotLike = async () => {
-		setLoadingAction(true);
-		try {
-			await addNotLike({
-				variables: {
-					idPublication: publication.id,
-				},
-			});
-			refetchNotLike();
-			refetchCountNotLike();
-		} catch (error) {
-			console.log(error);
-		}
-		setLoadingAction(false);
-	};
-
-	const onAddTrash = async () => {
-		setLoadingAction(true);
-		try {
-			await addTrash({
-				variables: {
-					idPublication: publication.id,
-				},
-			});
-			refetchTrash();
-			refetchCountTrash();
-		} catch (error) {
-			console.log(error);
-		}
-		setLoadingAction(false);
-	};
-
-	const onDeleteLike = async () => {
-		setLoadingAction(true);
+	const removeLikes = async () => {
 		try {
 			await deleteLike({
 				variables: {
 					idPublication: publication.id,
 				},
 			});
-			refetch();
-			refetchCount();
-		} catch (error) {
-			console.log(error);
-		}
-		setLoadingAction(false);
-	};
-
-	const onDeleteNotLike = async () => {
-		setLoadingAction(true);
-		try {
 			await deleteNotLike({
 				variables: {
 					idPublication: publication.id,
 				},
 			});
-			refetchNotLike();
-			refetchCountNotLike();
-		} catch (error) {
-			console.log(error);
-		}
-		setLoadingAction(false);
-	};
-
-	const onDeleteTrash = async () => {
-		setLoadingAction(true);
-		try {
 			await deleteTrash({
 				variables: {
 					idPublication: publication.id,
 				},
 			});
-			refetchTrash();
-			refetchCountTrash();
 		} catch (error) {
 			console.log(error);
 		}
-		setLoadingAction(false);
 	};
 
-	const onAction = (param) => {
-		if (!loadingAction) {
-			switch (param) {
-				case 'like':
-					onDeleteLike();
-					onDeleteNotLike();
-					onDeleteTrash();
-					onAddLike();
-					break;
-				case 'notLike':
-					onDeleteLike();
-					onDeleteNotLike();
-					onDeleteTrash();
-					onAddNotLike();
-					break;
-				case 'trash':
-					onDeleteLike();
-					onDeleteNotLike();
-					onDeleteTrash();
-					onAddTrash();
-					break;
-				default:
-					break;
-			}
+	const refetchAll = () => {
+		refetchNotLike();
+		refetchCountNL();
+		refetchTrash();
+		refetchCountTrash();
+		refetchLike();
+		refetchCount();
+	};
+
+	const onLike = async (func) => {
+		if (saving) {
+			return null;
 		}
+		setSaving(true);
+		try {
+			await removeLikes();
+			await func({
+				variables: {
+					idPublication: publication.id,
+				},
+			});
+			refetchAll();
+		} catch (error) {
+			console.log(error);
+		}
+		setSaving(false);
 	};
 
 	const rightSize = () => {
-		if (width < 500) {
+		if (width < MOBILE_RES) {
 			return 'mini';
 		} else return 'medium';
 	};
 
-	if (loading || loadingCount || loadingNotLike || loadingCountNotLike || loadingTrash || loadingCountTrash)
+	if (loadingLike || loadingCount || loadingNotLike || loadingCountNL || loadingTrash || loadingCountTrash)
 		return null;
 
-	const { countLikes } = dataCount;
-	const { countNotLikes } = dataCountNotLike;
+	const { countLikes } = dataCountLikes;
+	const { countNotLikes } = dataCountNL;
 	const { countTrash } = dataCountTrash;
 
 	return (
-		<div className={width < 500 ? 'actions-cell' : 'actions'}>
-			<Button as="div" labelPosition="right">
-				<Button color="blue" onClick={() => onAction('like')} size={rightSize()}>
-					<Icon name="thumbs up outline" />
-					{t('actionsLikeButton')}
-				</Button>
-				<Label as="a" basic color="blue" pointing="left">
-					{countLikes}
-				</Label>
-			</Button>
-			<Button as="div" labelPosition="right">
-				<Button color="red" onClick={() => onAction('notLike')} size={rightSize()}>
-					<Icon name="thumbs down outline" />
-					{t('actionsNotLikeButton')}
-				</Button>
-				<Label as="a" basic color="red" pointing="left">
-					{countNotLikes}
-				</Label>
-			</Button>
-			<Button as="div" labelPosition="right">
-				<Button color="green" onClick={() => onAction('trash')} size={rightSize()}>
-					<Icon name="trash alternate outline" />
-					{t('actionsTrashButton')}
-				</Button>
-				<Label as="a" basic color="green" pointing="left">
-					{countTrash}
-				</Label>
-			</Button>
-		</div>
+		<>
+			{onComment === undefined ? (
+				<div className={width < MOBILE_RES ? 'actions-cell' : 'actions'}>
+					<ButtonLike onAction={onLike} rightSize={rightSize} width={width} countLikes={countLikes} t={t} />
+					<ButtonNotLike
+						onAction={onLike}
+						rightSize={rightSize}
+						width={width}
+						countNotLikes={countNotLikes}
+						t={t}
+					/>
+					<ButtonTrash onAction={onLike} rightSize={rightSize} width={width} countTrash={countTrash} t={t} />
+				</div>
+			) : (
+				<ActionsMobile
+					onAction={onLike}
+					setOnComment={setOnComment}
+					countLikes={countLikes}
+					countNotLikes={countNotLikes}
+					countTrash={countTrash}
+				/>
+			)}
+		</>
 	);
 }

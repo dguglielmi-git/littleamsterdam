@@ -14,6 +14,7 @@ import {
 	COUNT_NOT_LIKE,
 	COUNT_TRASH,
 } from '../../../../gql/like';
+import { COUNT_COMMENTS } from '../../../../gql/comment';
 import ButtonLike from './ButtonLike';
 import ButtonNotLike from './ButtonNotLike';
 import ButtonTrash from './ButtonTrash';
@@ -45,6 +46,7 @@ export default function Actions(props) {
 	const { data: dataCountLikes, loading: loadingCount, refetch: refetchCount } = useQueries(COUNT_LIKE);
 	const { data: dataCountNL, loading: loadingCountNL, refetch: refetchCountNL } = useQueries(COUNT_NOT_LIKE);
 	const { data: dataCountTrash, loading: loadingCountTrash, refetch: refetchCountTrash } = useQueries(COUNT_TRASH);
+	const { data: dataCountComments, loading: loadingComments } = useQueries(COUNT_COMMENTS);
 
 	const removeLikes = async () => {
 		try {
@@ -102,13 +104,21 @@ export default function Actions(props) {
 		} else return 'medium';
 	};
 
-	if (loadingLike || loadingCount || loadingNotLike || loadingCountNL || loadingTrash || loadingCountTrash)
+	if (
+		loadingLike ||
+		loadingCount ||
+		loadingNotLike ||
+		loadingCountNL ||
+		loadingTrash ||
+		loadingCountTrash ||
+		loadingComments
+	)
 		return null;
 
 	const { countLikes } = dataCountLikes;
 	const { countNotLikes } = dataCountNL;
 	const { countTrash } = dataCountTrash;
-
+	const { countComments } = dataCountComments;
 	return (
 		<>
 			{onComment === undefined ? (
@@ -130,6 +140,8 @@ export default function Actions(props) {
 					countLikes={countLikes}
 					countNotLikes={countNotLikes}
 					countTrash={countTrash}
+					countComments={countComments}
+					t={t}
 				/>
 			)}
 		</>

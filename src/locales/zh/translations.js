@@ -65,6 +65,10 @@ export const TRANSLATION_ZH = {
 	actionsNotLikeButton: `不喜歡`,
 	actionsTrashButton: `廢話`,
 
+	// ActionsMobile
+	actionsMobileComment: '評論',
+	actionsMobileComments: '註釋',
+
 	// CommentForm
 	commentFormAddComment: '寫個評論...',
 	commentFormCommentButton: '評論',

@@ -6,7 +6,7 @@ import { ADD_LIKE, ADD_NOT_LIKE, ADD_TRASH } from '../../../../gql/like';
 import './ActionsMobile.scss';
 
 const ActionsMobile = (props) => {
-	const { setOnComment, countLikes, countNotLikes, countTrash, onAction } = props;
+	const { setOnComment, countLikes, countNotLikes, countTrash, onAction, countComments, t } = props;
 	const [addLike] = useMutation(ADD_LIKE);
 	const [addNotLike] = useMutation(ADD_NOT_LIKE);
 	const [addTrash] = useMutation(ADD_TRASH);
@@ -28,7 +28,9 @@ const ActionsMobile = (props) => {
 				</div>
 			</div>
 			<div className="actions-mobile__comments" onClick={() => setOnComment(true)}>
-				<p>20 Comentarios -</p>
+				<p>
+					{countComments} {countComments === 1 ? t('actionsMobileComment') : t('actionsMobileComments')}
+				</p>
 			</div>
 		</div>
 	);

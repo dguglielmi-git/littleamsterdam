@@ -65,6 +65,10 @@ export const TRANSLATION_ES = {
 	actionsNotLikeButton: 'No me gusta',
 	actionsTrashButton: 'Me chupa un huevo',
 
+	// ActionsMobile
+	actionsMobileComment: 'Comentario',
+	actionsMobileComments: 'Comentarios',
+
 	// CommentForm
 	commentFormAddComment: 'Agrega un comentario...',
 	commentFormCommentButton: 'Comentar',

@@ -21,3 +21,9 @@ export const GET_COMMENTS = gql`
     }
   }
 `;
+
+export const COUNT_COMMENTS = gql`
+  query countComments($idPublication: ID!) {
+    countComments(idPublication: $idPublication)
+  }
+`;

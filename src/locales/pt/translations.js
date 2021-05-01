@@ -65,6 +65,10 @@ export const TRANSLATION_PT = {
 	actionsNotLikeButton: `Não gosto`,
 	actionsTrashButton: `Besteiro`,
 
+	// ActionsMobile
+	actionsMobileComment: 'Comente',
+	actionsMobileComments: 'Comentários',
+
 	// CommentForm
 	commentFormAddComment: 'Escreva um comentário...',
 	commentFormCommentButton: 'Comente',

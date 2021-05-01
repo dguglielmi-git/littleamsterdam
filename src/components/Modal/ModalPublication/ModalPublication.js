@@ -9,7 +9,6 @@ import ModalPubTitle from './ModalPubTitle';
 import useWindowDimensions from '../../../hooks/useWindowDimensions';
 import { MOBILE_RES } from '../../../utils/constants';
 import Actions from './Actions';
-import ActionsMobile from './ActionsMobile';
 import CommentsMobile from './CommentsMobile';
 import '../../../locales/i18n';
 import './ModalPublication.scss';
@@ -42,7 +41,6 @@ export default function ModalPublication(props) {
 							<div className="mobile-publication__photo">
 								<img src={publication.file} alt="" height="300px" />
 							</div>
-							{/*<ActionsMobile setOnComment={setOnComment} />*/}
 							<Actions publication={publication} onComment={onComment} setOnComment={setOnComment} />
 						</Modal>
 					) : (

@@ -65,6 +65,11 @@ export const TRANSLATION_EN = {
 	actionsNotLikeButton: `Don't Like`,
 	actionsTrashButton: `Bullshit`,
 
+	// ActionsMobile
+	actionsMobileComment: 'Comment',
+	actionsMobileComments: 'Comments',
+	
+
 	// CommentForm
 	commentFormAddComment: 'Write a Comment...',
 	commentFormCommentButton: 'Comment',

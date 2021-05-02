@@ -31,13 +31,16 @@ export default function Actions(props) {
 	const [deleteNotLike] = useMutation(DELETE_NOT_LIKE);
 	const [deleteTrash] = useMutation(DELETE_TRASH);
 
-	// Generic function
-	const useQueries = (query) =>
-		useQuery(query, {
-			variables: {
-				idPublication: publication.id,
-			},
-		});
+	/**
+	 * Generic code for having a clean code when called to useQuery()
+	 * and help us to avoid repeating code.
+	 */
+	const genericPublication = {
+		variables: {
+			idPublication: publication.id,
+		},
+	};
+	const useQueries = (query) => useQuery(query, genericPublication);
 
 	const { loading: loadingLike, refetch: refetchLike } = useQueries(IS_LIKE);
 	const { loading: loadingTrash, refetch: refetchTrash } = useQueries(IS_TRASH);
@@ -50,21 +53,9 @@ export default function Actions(props) {
 
 	const removeLikes = async () => {
 		try {
-			await deleteLike({
-				variables: {
-					idPublication: publication.id,
-				},
-			});
-			await deleteNotLike({
-				variables: {
-					idPublication: publication.id,
-				},
-			});
-			await deleteTrash({
-				variables: {
-					idPublication: publication.id,
-				},
-			});
+			await deleteLike(genericPublication);
+			await deleteNotLike(genericPublication);
+			await deleteTrash(genericPublication);
 		} catch (error) {
 			console.log(error);
 		}
@@ -79,18 +70,15 @@ export default function Actions(props) {
 		refetchCount();
 	};
 
-	const onLike = async (func) => {
+	const onLike = async (anon) => {
+		// Semaphore
 		if (saving) {
 			return null;
 		}
 		setSaving(true);
 		try {
 			await removeLikes();
-			await func({
-				variables: {
-					idPublication: publication.id,
-				},
-			});
+			await anon(genericPublication);
 			refetchAll();
 		} catch (error) {
 			console.log(error);
@@ -98,11 +86,7 @@ export default function Actions(props) {
 		setSaving(false);
 	};
 
-	const rightSize = () => {
-		if (width < MOBILE_RES) {
-			return 'mini';
-		} else return 'medium';
-	};
+	const rightSize = () => (width < MOBILE_RES ? 'mini' : 'medium');
 
 	if (
 		loadingLike ||

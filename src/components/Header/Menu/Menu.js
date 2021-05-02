@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Tooltip } from 'primereact/tooltip';
-import { Icon, Image } from 'semantic-ui-react';
+import { Image } from 'semantic-ui-react';
 import { useApolloClient } from '@apollo/client';
 import { useHistory, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
@@ -17,9 +16,9 @@ import DropCommon from '../../Common/Dropdown';
 import '../../../locales/i18n';
 import 'flag-icon-css/css/flag-icon.css';
 import { MOBILE_RES } from '../../../utils/constants';
-import ButtonUpload from './ButtonUpload';
-import ButtonSettings from './ButtonSettings';
-import ButtonLogout from './ButtonLogout';
+import ButtonUpload from './Buttons/ButtonUpload';
+import ButtonSettings from './Buttons/ButtonSettings';
+import ButtonLogout from './Buttons/ButtonLogout';
 import './Menu.scss';
 
 export default function Menu() {

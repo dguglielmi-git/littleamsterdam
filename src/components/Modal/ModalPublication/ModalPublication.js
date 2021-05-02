@@ -21,9 +21,10 @@ export default function ModalPublication(props) {
 	const onClose = () => setShow(false);
 	let datePublish = formatDate(new Date(publication.createAt * 1));
 
+	const isNotMobile = () => width > MOBILE_RES;
 	return (
 		<>
-			{width > MOBILE_RES ? (
+			{isNotMobile() ? (
 				<Modal open={show} onClose={onClose} className="modal-publication">
 					<Grid>
 						<ModalLeftCol publication={publication} />

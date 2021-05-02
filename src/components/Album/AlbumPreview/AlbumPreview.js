@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useMutation } from '@apollo/client';
-import { Tooltip } from 'primereact/tooltip';
 import { useTranslation } from 'react-i18next';
 import { DELETE_ALBUM } from '../../../gql/album';
-import { Image, Icon, Confirm } from 'semantic-ui-react';
+import { Image, Confirm } from 'semantic-ui-react';
+import ButtonDelete from './ButtonDelete';
 import ImgNotFound from '../../../assets/imgNotFound.png';
 import '../../../locales/i18n';
 import './AlbumPreview.scss';
@@ -36,12 +36,7 @@ export default function PreviewPublication(props) {
 			<div className="preview-album">
 				<div className="preview-album__title">
 					<strong>{album.title}</strong>
-					{isAlbum && (
-						<div className="preview-album__title delete" data-pr-tooltip="Eliminar Album">
-							<Tooltip target=".delete" position="bottom" />
-							<Icon link name="trash alternate" color="black" onClick={() => handleConfirm()} />
-						</div>
-					)}
+					{isAlbum && <ButtonDelete t={t} onDelete={handleConfirm} />}
 				</div>
 				<div className="preview-album__image-box">
 					<Image

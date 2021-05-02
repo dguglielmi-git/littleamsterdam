@@ -21,11 +21,16 @@ export const TRANSLATION_NL = {
 	albumListNotFound: 'Gebruiker zonder albums ...',
 	albumListEmpty: 'Dit album is leeg ...',
 	albumListName: 'Voer de albumnaam in',
+	albumListGoBack: `Ga naar de lijst van het album`,
+	albumListUploadPic: 'Upload een foto.',
 
 	// AlbumPreview
 	albumPreviewConfirmDelete: 'Wilt u het album verwijderen?',
 	albumPreviewErrorDelete: 'Fout bij het verwijderen van het album.',
 	albumPreviewAlbumDeleted: 'Album is succesvol verwijderd.',
+
+	// ButtonDelete (Album and Publications)
+	buttonDelete: 'Verwijderen',
 
 	// LoginForm
 	loginFormWrongEmail: 'Foute email',
@@ -86,6 +91,9 @@ export const TRANSLATION_NL = {
 	publicationsMenuPublish: 'Publicaties',
 	publicationsMenuAlbum: 'Albums',
 
+	// PreviewPublications
+	previewPublicationDelete: 'Wil je de foto verwijderen?',
+
 	// AvatarForm
 	avatarFormUpdateError: 'Fout bij updaten van avatar.',
 	avatarFormDeleteError: 'Fout bij verwijderen van avatar.',
@@ -144,7 +152,7 @@ export const TRANSLATION_NL = {
 	profileChangePicture: 'Profielfoto veranderen',
 
 	// SiteWebForm
-	siteWebFormUpdateOk : 'De website is succesvol bijgewerkt.',
+	siteWebFormUpdateOk: 'De website is succesvol bijgewerkt.',
 	siteWebFormUpdateError: 'Fout bij updaten van website.',
 	siteWebFormWebsite: 'Website',
 	siteWebFormUpdateButton: 'Bijwerken',

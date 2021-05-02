@@ -17,7 +17,6 @@ export default function ListUsers(props) {
 		history.push(`/${username}`);
 	};
 
-	console.log(users);
 	return (
 		<div className="list-users">
 			{size(users) === 0 ? (

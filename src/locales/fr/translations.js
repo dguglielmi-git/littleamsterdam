@@ -21,6 +21,11 @@ export const TRANSLATION_FR = {
 	albumListNotFound: 'Utilisateur sans albums ...',
 	albumListEmpty: 'Cet album est vide ...',
 	albumListName: `Entrez le nom de l'album`,
+	albumListGoBack: `Aller à la liste des albums`,
+	albumListUploadPic: `Télécharger une photo.`,
+
+	// ButtonDelete (Album and Publications)
+	buttonDelete: 'Supprimer',
 
 	// AlbumPreview
 	albumPreviewConfirmDelete: `Voulez-vous supprimer l'album?`,
@@ -85,6 +90,9 @@ export const TRANSLATION_FR = {
 	// Publications
 	publicationsMenuPublish: 'Les publications',
 	publicationsMenuAlbum: 'Des albums',
+
+	// PreviewPublications
+	previewPublicationDelete: 'Voulez-vous supprimer la photo?',
 
 	// AvatarForm
 	avatarFormUpdateError: `Erreur lors de la mise à jour de l'avatar.`,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tooltip } from 'primereact/tooltip';
 import { Icon } from 'semantic-ui-react';
-import './Menu.scss';
+import '../Menu.scss';
 
 const ButtonUpload = ({ setShowModal,t }) => {
 	return (

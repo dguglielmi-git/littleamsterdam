@@ -1,14 +1,16 @@
 @import "../../../../scss/index.scss";
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital@1&family=Roboto&display=swap');
 
 .followers {
   display: flex;
   flex-direction: column;
+  font-family: 'Roboto', sans-serif !important;
   
   p {
     margin: 5px !important;
     margin-right: 50px !important;
     
-    font-size: 16px;
+    font-size: 14px;
     &.link:hover {
       cursor: pointer;
     }

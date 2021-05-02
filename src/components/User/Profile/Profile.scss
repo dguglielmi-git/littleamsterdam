@@ -1,7 +1,9 @@
 @import "../../../scss/index.scss";
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital@1&family=Roboto&display=swap');
 
 .profile {
     margin-top: 20px !important;
+    font-family: 'Roboto', sans-serif;
   
     &__left {
       display: flex !important;
@@ -27,7 +29,7 @@
         }
         .description {
           font-size: 16px;
-          margin-top: 10px;
+          margin-bottom: 10px;
         }
       }
     }

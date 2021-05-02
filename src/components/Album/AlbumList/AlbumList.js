@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { map, size } from 'lodash';
-import { Grid, Icon } from 'semantic-ui-react';
+import { size } from 'lodash';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { GET_USER } from '../../../gql/user';
@@ -9,11 +8,15 @@ import { GET_PUBLICATIONS } from '../../../gql/publication';
 import { useTranslation } from 'react-i18next';
 import '../../../locales/i18n';
 import AlbumForm from '../AlbumForm';
-import AlbumPreview from '../AlbumPreview';
+import AlbumListing from './AlbumListing';
+import AlbumContent from './AlbumContent';
+import ButtonBack from './Buttons/ButtonBack';
+import ButtonAddAlbum from './Buttons/ButtonAddAlbum';
+import ButtonAddPicture from './Buttons/ButtonAddPicture';
 import useAuth from '../../../hooks/useAuth';
 import ModalBasic from '../../Modal/ModalBasic';
+import ModalUpload from '../../Modal/ModalUpload';
 import useWindowDimensions from '../../../hooks/useWindowDimensions';
-import PreviewPublication from '../../Publications/PreviewPublication';
 
 import './AlbumList.scss';
 
@@ -25,6 +28,7 @@ export default function AlbumList() {
 	const [isAlbum, setIsAlbum] = useState(false);
 	const [titleModal, setTitleModal] = useState('');
 	const [showModal, setShowModal] = useState(false);
+	const [showModalUpload, setShowModalUpload] = useState(false);
 	const [childrenModal, setChildrenModal] = useState(null);
 	const [albumSelected, setAlbumSelected] = useState(false);
 	const [idAlbumSelected, setIdAlbumSelected] = useState('-1');
@@ -67,33 +71,7 @@ export default function AlbumList() {
 		refetchPublication();
 	};
 
-	const ButtonBack = () => {
-		return (
-			<Icon
-				className="icons"
-				link
-				name="arrow alternate circle left outline"
-				size="large"
-				color="blue"
-				onClick={() => setAlbumSelected(false)}
-			/>
-		);
-	};
-
-	const ButtonAddPicture = () => {
-		return <Icon className="icons" link name="cloud upload" size="large" color="blue" />;
-	};
-
 	const getCols = () => (width > 600 ? 4 : 1);
-
-	const ButtonAddAlbum = () => {
-		return (
-			<div className="album__addButton" onClick={() => addAlbumModal()}>
-				<Icon link name="plus" size="big" color="blue" />
-				<p>{t('')}</p>
-			</div>
-		);
-	};
 
 	return (
 		<div className="album">
@@ -101,35 +79,25 @@ export default function AlbumList() {
 				<>
 					{albumSelected && (
 						<div className="album__goBack">
-							<ButtonBack /> {isAlbum && <ButtonAddPicture />}{' '}
+							<ButtonBack setAlbumSelected={setAlbumSelected} t={t} />
+							{isAlbum && <ButtonAddPicture t={t} setShowModalUpload={setShowModalUpload}/>}{' '}
 						</div>
 					)}
 					{!albumSelected ? (
 						<>
-							{isAlbum && <ButtonAddAlbum />}
-							<Grid columns={getCols()}>
-								{map(getAlbums, (album, index) => (
-									<Grid.Column key={index}>
-										<AlbumPreview
-											album={album}
-											isAlbum={isAlbum}
-											refetchAlbum={refetchAlbum}
-											handleAlbumSelect={handleAlbumSelect}
-										/>
-									</Grid.Column>
-								))}
-							</Grid>
+							{isAlbum && <ButtonAddAlbum addAlbumModal={addAlbumModal} t={t} />}
+							<AlbumListing
+								getCols={getCols}
+								getAlbums={getAlbums}
+								isAlbum={isAlbum}
+								refetchAlbum={refetchAlbum}
+								handleAlbumSelect={handleAlbumSelect}
+							/>
 						</>
 					) : (
 						<>
 							{getPublications && size(getPublications) > 0 ? (
-								<Grid columns={getCols}>
-									{map(getPublications, (publication, index) => (
-										<Grid.Column key={index}>
-											<PreviewPublication publication={publication} />
-										</Grid.Column>
-									))}
-								</Grid>
+								<AlbumContent getCols={getCols} getPublications={getPublications} />
 							) : (
 								<div>{t('albumListEmpty')}</div>
 							)}
@@ -142,6 +110,7 @@ export default function AlbumList() {
 			<ModalBasic show={showModal} setShow={setShowModal} title={titleModal}>
 				{childrenModal}
 			</ModalBasic>
+			<ModalUpload show={showModalUpload} setShow={setShowModalUpload} idAlbum={idAlbumSelected} />
 		</div>
 	);
 }

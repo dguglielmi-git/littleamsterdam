@@ -21,11 +21,16 @@ export const TRANSLATION_ES = {
 	albumListNotFound: 'No tiene albumes...',
 	albumListEmpty: 'Este album esta vacio...',
 	albumListName: 'Ingrese Nombre de Album',
+	albumListGoBack: `Volver al listado de Albumes`,
+	albumListUploadPic: 'Sube una nueva foto.',
 
 	// AlbumPreview
 	albumPreviewConfirmDelete: 'Desea eliminar el album?',
 	albumPreviewErrorDelete: 'Error al intentar eliminar el Album.',
 	albumPreviewAlbumDeleted: 'El album se ha eliminado correctamente.',
+
+	// ButtonDelete (Album and Publications)
+	buttonDelete: 'Eliminar',
 
 	// LoginForm
 	loginFormWrongEmail: 'Email Incorrecto',
@@ -53,7 +58,7 @@ export const TRANSLATION_ES = {
 	menuDropdownAccount: 'Cuenta',
 	menuDropdownSettings: 'Ajustes',
 	menuDropdownLogout: 'Cerrar Sesion',
-	menuUploadImage: 'Subit Imagen',
+	menuUploadImage: 'Subir Imagen',
 	menuAccountSettings: 'Ajustes',
 	menuLogoff: 'Cerrar Sesion',
 
@@ -85,6 +90,9 @@ export const TRANSLATION_ES = {
 	// Publications
 	publicationsMenuPublish: 'Publicaciones',
 	publicationsMenuAlbum: 'Albumes',
+
+	// PreviewPublications
+	previewPublicationDelete: 'Desea eliminar la foto?',
 
 	// AvatarForm
 	avatarFormUpdateError: 'Error al actualizar Avatar.',

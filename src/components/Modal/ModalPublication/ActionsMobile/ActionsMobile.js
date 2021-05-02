@@ -5,35 +5,38 @@ import { useMutation } from '@apollo/client';
 import { ADD_LIKE, ADD_NOT_LIKE, ADD_TRASH } from '../../../../gql/like';
 import './ActionsMobile.scss';
 
-const ActionsMobile = (props) => {
-	const { setOnComment, countLikes, countNotLikes, countTrash, onAction, countComments, t } = props;
+const ActionsMobile = ({ setOnComment, countLikes, countNotLikes, countTrash, onAction, countComments, t }) => {
 	const [addLike] = useMutation(ADD_LIKE);
 	const [addNotLike] = useMutation(ADD_NOT_LIKE);
 	const [addTrash] = useMutation(ADD_TRASH);
 
+    // Font Awesome generic component
+	const FA = ({ cn, icon, color, counter, onFunc }) => {
+		return (
+			<div className={`actions-mobile__likes__${cn}`} onClick={() => onAction(onFunc)}>
+				<FontAwesomeIcon icon={icon} color={color} size="lg" />
+				<p>{counter}</p>
+			</div>
+		);
+	};
+
+	const CommentLine = ({ cc }) => (
+		<p>
+			{cc} {cc === 1 ? t('actionsMobileComment') : t('actionsMobileComments')}{' '}
+		</p>
+	);
+
 	return (
 		<div className="actions-mobile">
 			<div className="actions-mobile__likes">
-				<div className="actions-mobile__likes__like" onClick={() => onAction(addLike)}>
-					<FontAwesomeIcon icon={faThumbsUp} color="#4186C8" size="lg" />
-					<p>{countLikes}</p>
-				</div>
-				<div className="actions-mobile__likes__notLike" onClick={() => onAction(addNotLike)}>
-					<FontAwesomeIcon icon={faThumbsDown} color="#F15739" size="lg" />
-					<p>{countNotLikes}</p>
-				</div>
-				<div className="actions-mobile__likes__trash" onClick={() => onAction(addTrash)}>
-					<FontAwesomeIcon icon={faTrash} color="#07A905" size="lg" />
-					<p>{countTrash}</p>
-				</div>
+				<FA cn="like" icon={faThumbsUp} color="#4186C8" counter={countLikes} onFunc={addLike} />
+				<FA cn="notLike" icon={faThumbsDown} color="#F15739" counter={countNotLikes} onFunc={addNotLike} />
+				<FA cn="trash" icon={faTrash} color="#07A905" counter={countTrash} onFunc={addTrash} />
 			</div>
 			<div className="actions-mobile__comments" onClick={() => setOnComment(true)}>
-				<p>
-					{countComments} {countComments === 1 ? t('actionsMobileComment') : t('actionsMobileComments')}
-				</p>
+				<CommentLine cc={countComments} />
 			</div>
 		</div>
 	);
 };
-
 export default ActionsMobile;

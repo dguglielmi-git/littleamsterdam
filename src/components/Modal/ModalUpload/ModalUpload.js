@@ -10,7 +10,7 @@ import './ModalUpload.scss';
 
 export default function ModalUpload(props) {
 	const { t } = useTranslation();
-	const { show, setShow } = props;
+	const { show, setShow, idAlbum } = props;
 	const [fileUpload, setFileUpload] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 	const [publish] = useMutation(PUBLISH);
@@ -43,7 +43,7 @@ export default function ModalUpload(props) {
 			const result = await publish({
 				variables: {
 					file: fileUpload.file,
-					album: '0',
+					album: idAlbum === undefined ? '0' : idAlbum,
 				},
 			});
 			const { data } = result;

@@ -55,6 +55,7 @@ export default function Profile(props) {
 				break;
 		}
 	};
+	
 	return (
 		<>
 			<Grid className="profile">

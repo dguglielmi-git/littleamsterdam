@@ -21,11 +21,16 @@ export const TRANSLATION_ZH = {
 	albumListNotFound: '沒有相冊的用戶...',
 	albumListEmpty: '這張專輯是空的...',
 	albumListName: '輸入專輯名稱',
+	albumListGoBack: `轉到相冊列表`,
+	albumListUploadPic: '上傳一張照片。',
 
 	// AlbumPreview
 	albumPreviewConfirmDelete: '您要刪除相冊嗎？',
 	albumPreviewErrorDelete: '嘗試刪除相冊時出錯。',
 	albumPreviewAlbumDeleted: '相冊已成功刪除。',
+
+	// ButtonDelete (Album and Publications)
+	buttonDelete: '去掉',
 
 	// LoginForm
 	loginFormWrongEmail: '錯誤的電子郵件',
@@ -86,6 +91,9 @@ export const TRANSLATION_ZH = {
 	publicationsMenuPublish: '刊物',
 	publicationsMenuAlbum: '專輯',
 
+	// PreviewPublications
+	previewPublicationDelete: '您要刪除照片嗎？',
+
 	// AvatarForm
 	avatarFormUpdateError: '更新頭像時出錯。',
 	avatarFormDeleteError: '刪除頭像時出錯。',
@@ -144,7 +152,7 @@ export const TRANSLATION_ZH = {
 	profileChangePicture: '更改個人資料圖片',
 
 	// SiteWebForm
-	siteWebFormUpdateOk : '網站已成功更新。',
+	siteWebFormUpdateOk: '網站已成功更新。',
 	siteWebFormUpdateError: '更新網站時出錯。',
 	siteWebFormWebsite: '網站',
 	siteWebFormUpdateButton: '更新',

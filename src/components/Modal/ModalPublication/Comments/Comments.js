@@ -15,7 +15,6 @@ export default function Comments(props) {
       idPublication: publication.id,
     },
   });
-  console.log(publication)
 
   useEffect(() => {
     startPolling(1000);

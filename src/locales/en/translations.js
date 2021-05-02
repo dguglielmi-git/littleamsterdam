@@ -21,11 +21,16 @@ export const TRANSLATION_EN = {
 	albumListNotFound: 'User without Albums...',
 	albumListEmpty: 'This Album is empty...',
 	albumListName: 'Enter Album Name',
+	albumListGoBack: `Go to Album's list`,
+	albumListUploadPic: 'Upload a photo.',
 
 	// AlbumPreview
 	albumPreviewConfirmDelete: 'Do you want to delete the Album?',
 	albumPreviewErrorDelete: 'Error trying to delete the Album.',
 	albumPreviewAlbumDeleted: 'Album has been deleted successfully.',
+
+	// ButtonDelete (Album and Publications)
+	buttonDelete: 'Remove',
 
 	// LoginForm
 	loginFormWrongEmail: 'Wrong email',
@@ -86,6 +91,9 @@ export const TRANSLATION_EN = {
 	// Publications
 	publicationsMenuPublish: 'Publications',
 	publicationsMenuAlbum: 'Albums',
+
+	// PreviewPublications
+	previewPublicationDelete: 'Do you want to delete the photo?',
 
 	// AvatarForm
 	avatarFormUpdateError: 'Error Updating Avatar.',

@@ -21,11 +21,16 @@ export const TRANSLATION_PT = {
 	albumListNotFound: 'Usuário sem álbuns ...',
 	albumListEmpty: 'Este álbum está vazio ...',
 	albumListName: 'Digite o nome do álbum',
+	albumListGoBack: `Vá para a lista de álbuns`,
+	albumListUploadPic: 'Carregar uma foto.',
 
 	// AlbumPreview
 	albumPreviewConfirmDelete: 'Você quer deletar o álbum?',
 	albumPreviewErrorDelete: 'Erro ao tentar excluir o álbum.',
 	albumPreviewAlbumDeleted: 'O álbum foi excluído com sucesso.',
+
+	// ButtonDelete (Album and Publications)
+	buttonDelete: 'Remover',
 
 	// LoginForm
 	loginFormWrongEmail: 'E-mail errado',
@@ -86,6 +91,9 @@ export const TRANSLATION_PT = {
 	publicationsMenuPublish: 'Publicações',
 	publicationsMenuAlbum: 'Álbuns',
 
+	// PreviewPublications
+	previewPublicationDelete: 'Você quer deletar a foto?',
+
 	// AvatarForm
 	avatarFormUpdateError: 'Erro ao atualizar o avatar.',
 	avatarFormDeleteError: 'Erro ao excluir o avatar.',
@@ -144,7 +152,7 @@ export const TRANSLATION_PT = {
 	profileChangePicture: 'Alterar a foto do perfil',
 
 	// SiteWebForm
-	siteWebFormUpdateOk : 'O site foi atualizado com sucesso.',
+	siteWebFormUpdateOk: 'O site foi atualizado com sucesso.',
 	siteWebFormUpdateError: 'Erro ao atualizar o site.',
 	siteWebFormWebsite: 'Website',
 	siteWebFormUpdateButton: 'Atualizar',

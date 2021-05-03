@@ -80,7 +80,7 @@ export default function AlbumList() {
 					{albumSelected && (
 						<div className="album__goBack">
 							<ButtonBack setAlbumSelected={setAlbumSelected} t={t} />
-							{isAlbum && <ButtonAddPicture t={t} setShowModalUpload={setShowModalUpload}/>}{' '}
+							{isAlbum && <ButtonAddPicture t={t} setShowModalUpload={setShowModalUpload} />}{' '}
 						</div>
 					)}
 					{!albumSelected ? (
@@ -97,7 +97,12 @@ export default function AlbumList() {
 					) : (
 						<>
 							{getPublications && size(getPublications) > 0 ? (
-								<AlbumContent getCols={getCols} getPublications={getPublications} />
+								<AlbumContent
+									isOwner={isAlbum}
+									getCols={getCols}
+									getPublications={getPublications}
+									refetchPublication={refetchPublication}
+								/>
 							) : (
 								<div>{t('albumListEmpty')}</div>
 							)}
@@ -110,7 +115,8 @@ export default function AlbumList() {
 			<ModalBasic show={showModal} setShow={setShowModal} title={titleModal}>
 				{childrenModal}
 			</ModalBasic>
-			<ModalUpload show={showModalUpload} setShow={setShowModalUpload} idAlbum={idAlbumSelected} />
+			<ModalUpload show={showModalUpload} setShow={setShowModalUpload} idAlbum={idAlbumSelected}
+			refetchPublication={refetchPublication} />
 		</div>
 	);
 }

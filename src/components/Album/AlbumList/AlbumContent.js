@@ -4,12 +4,17 @@ import { Grid } from 'semantic-ui-react';
 import PreviewPublication from '../../Publications/PreviewPublication';
 import './AlbumList.scss';
 
-const AlbumContent = ({ getCols, getPublications }) => {
+const AlbumContent = (props) => {
+	const { getCols, getPublications, isOwner, refetchPublication } = props;
 	return (
 		<Grid columns={getCols()}>
 			{map(getPublications, (publication, index) => (
 				<Grid.Column key={index}>
-					<PreviewPublication publication={publication} />
+					<PreviewPublication
+						isOwner={isOwner}
+						publication={publication}
+						refetchPublication={refetchPublication}
+					/>
 				</Grid.Column>
 			))}
 		</Grid>

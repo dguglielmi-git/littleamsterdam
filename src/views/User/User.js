@@ -10,7 +10,7 @@ import './User.scss';
 
 export default function User() {
 	const { username } = useParams();
-	const { data, loading, startPolling, stopPolling } = useQuery(GET_PUBLICATIONS, {
+	const { data, loading, startPolling, stopPolling, refetch: refetchPublication } = useQuery(GET_PUBLICATIONS, {
 		variables: { username },
 	});
 
@@ -31,7 +31,7 @@ export default function User() {
 	return (
 		<div>
 			<Profile username={username} totalPublications={size(getPublications)} />
-			<Publications getPublications={getPublications} />
+			<Publications getPublications={getPublications} refetchPublication={refetchPublication} />
 		</div>
 	);
 }

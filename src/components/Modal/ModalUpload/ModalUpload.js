@@ -10,7 +10,7 @@ import './ModalUpload.scss';
 
 export default function ModalUpload(props) {
 	const { t } = useTranslation();
-	const { show, setShow, idAlbum } = props;
+	const { show, setShow, idAlbum, refetchPublication } = props;
 	const [fileUpload, setFileUpload] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 	const [publish] = useMutation(PUBLISH);
@@ -49,8 +49,9 @@ export default function ModalUpload(props) {
 			const { data } = result;
 			if (!data.publish.status) {
 				toast.warning(t('modalUploadPublishError'));
-				isLoading(false);
+				setIsLoading(false);
 			} else {
+				if (refetchPublication !== undefined) refetchPublication();
 				onClose();
 			}
 		} catch (error) {

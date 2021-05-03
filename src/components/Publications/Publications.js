@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { map } from 'lodash';
+import { useParams } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 import { useTranslation } from 'react-i18next';
 import { Grid, Tab } from 'semantic-ui-react';
 import AlbumList from '../Album/AlbumList';
@@ -11,9 +13,12 @@ import '../../locales/i18n';
 import './Publications.scss';
 
 export default function Publications(props) {
+	const { getPublications, refetchPublication } = props;
 	const { t } = useTranslation();
-	const { getPublications } = props;
+	const { auth } = useAuth();
+	const { username } = useParams();
 	const { width } = useWindowDimensions();
+	const [isOwner, setIsOwner] = useState(false);
 	const [showUpload, setShowUpload] = useState(false);
 
 	const getCols = () => (width > 600 ? 4 : 1);
@@ -33,16 +38,20 @@ export default function Publications(props) {
 		},
 	];
 
+	useEffect(() => {
+		setIsOwner(username === auth.username);
+	}, [username, auth.username]);
+
 	const showPublications = () => {
 		return (
 			<Tab.Pane attached={false}>
 				<div className="publications__upload">
-					<ButtonAddPicture t={t} setShowModalUpload={setShowUpload} />
+					{isOwner && <ButtonAddPicture t={t} setShowModalUpload={setShowUpload} />}
 				</div>
 				<Grid columns={getCols()}>
 					{map(getPublications, (publication, index) => (
 						<Grid.Column key={index}>
-							<PreviewPublication publication={publication} />
+							<PreviewPublication isOwner={isOwner} publication={publication} />
 						</Grid.Column>
 					))}
 				</Grid>

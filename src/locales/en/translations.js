@@ -94,6 +94,8 @@ export const TRANSLATION_EN = {
 
 	// PreviewPublications
 	previewPublicationDelete: 'Do you want to delete the photo?',
+	previewPublicationDeleteOk: 'Item has been deleted successfully.',
+	previewPublicationDeleteError: 'An error occurred when trying to delete the item.',
 
 	// AvatarForm
 	avatarFormUpdateError: 'Error Updating Avatar.',

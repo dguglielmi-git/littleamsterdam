@@ -24,7 +24,7 @@ export default function Home() {
 						<Feed />
 					</Grid.Column>
 					<Grid.Column className="home__right" width={3}>
-						<h2>Right Side</h2>
+						{/*<h2>Right Side</h2>*/}
 					</Grid.Column>
 				</>
 			)}

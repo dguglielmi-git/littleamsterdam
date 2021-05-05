@@ -4,12 +4,12 @@ import { setContext } from 'apollo-link-context';
 import { getToken } from '../utils/token';
 
 const httpLink = createUploadLink({
-	uri: 'https://graphql.littleamsterdam.com.ar',
+	//uri: 'https://graphql.littleamsterdam.com.ar',
 	//uri: 'http://172.31.31.96:4000',
 	//uri: 'http://ec2-3-143-231-2.us-east-2.compute.amazonaws.com:4000',
 	//uri: 'https://ec2-3-143-231-2.us-east-2.compute.amazonaws.com:4000/',
 	//uri: "http://192.168.100.9:4000",
-	// uri: "http://localhost:4000",
+	uri: 'http://localhost:4000',
 });
 
 const authLink = setContext((_, { headers }) => {

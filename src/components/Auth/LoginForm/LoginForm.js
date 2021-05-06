@@ -34,6 +34,7 @@ const LoginForm = (props) => {
 					},
 				});
 				const { token } = data.login;
+				console.log(data)
 				setToken(token);
 				setUser(decodeToken(token));
 			} catch (error) {

@@ -11,6 +11,8 @@ const httpLink = createUploadLink({
 	//uri: "http://192.168.100.9:4000",
 	//uri: 'http://35.194.24.231:4000',
 	uri: 'https://lamsterdam-gql.herokuapp.com/',
+	//uri: 'https://test-igql.herokuapp.com',
+	//	uri: 'http://localhost:4000',
 });
 
 const authLink = setContext((_, { headers }) => {

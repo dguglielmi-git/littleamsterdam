@@ -21,11 +21,15 @@ const LoginForm = (props) => {
 
 	const formik = useFormik({
 		initialValues: initialValues(),
+		validateOnChange: false,
 		validationSchema: Yup.object({
 			email: Yup.string().email(t('loginFormWrongEmail')).required(t('loginFormEmailRequired')),
 			password: Yup.string().required(t('loginFormPassRequired')),
+			// email: Yup.string(),
+			// password: Yup.string(),
 		}),
 		onSubmit: async (formData) => {
+
 			setError('');
 			try {
 				const { data } = await login({

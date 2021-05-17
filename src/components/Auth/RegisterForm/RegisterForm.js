@@ -18,6 +18,7 @@ export default function RegisterForm(props) {
 
 	const formik = useFormik({
 		initialValues: initialValues(),
+		validateOnChange: false,
 		validationSchema: Yup.object({
 			name: Yup.string().required(true),
 			username: Yup.string().matches(regEx, t('registerFormUserNameNoSpaces')).required(true),

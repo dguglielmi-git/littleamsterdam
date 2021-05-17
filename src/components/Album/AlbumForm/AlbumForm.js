@@ -18,6 +18,7 @@ export default function AlbumForm(props) {
 		initialValues: {
 			title: 'new Album',
 		},
+		validateOnChange: false,
 		validationSchema: Yup.object({
 			title: Yup.string().required(),
 		}),

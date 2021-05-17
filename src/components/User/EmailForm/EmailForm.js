@@ -18,6 +18,7 @@ export default function EmailForm(props) {
 		initialValues: {
 			email: currentEmail || '',
 		},
+		validateOnChange: false,
 		validationSchema: Yup.object({
 			email: Yup.string().email().required(),
 		}),

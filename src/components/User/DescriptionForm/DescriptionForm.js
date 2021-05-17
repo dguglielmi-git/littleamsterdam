@@ -18,6 +18,7 @@ export default function DescriptionForm(props) {
 		initialValues: {
 			description: currentDescription || '',
 		},
+		validateOnChange: false,
 		validationSchema: Yup.object({
 			description: Yup.string().required(),
 		}),

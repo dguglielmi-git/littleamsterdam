@@ -17,6 +17,7 @@ export default function CommentForm(props) {
 		initialValues: {
 			comment: '',
 		},
+		validateOnChange: false,
 		validationSchema: Yup.object({
 			comment: Yup.string().required(),
 		}),

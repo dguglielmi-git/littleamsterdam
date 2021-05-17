@@ -16,6 +16,7 @@ export default function PasswordForm(props) {
 
 	const formik = useFormik({
 		initialValues: initialValues(),
+		validateOnChange: false,
 		validationSchema: Yup.object({
 			currentPassword: Yup.string().required(),
 			newPassword: Yup.string()
@@ -50,13 +51,13 @@ export default function PasswordForm(props) {
 
 	return (
 		/*
-        value={formik.values.<campo>
-        onChange={formik.handleChange}
-        error={formik.errors.<campo>}
-        
-        *** In case we don't want the field shows the message but highlight it with red color, we use the following:
-        error={formik.errors.<campo> && true}
-    */
+		value={formik.values.<campo>
+		onChange={formik.handleChange}
+		error={formik.errors.<campo>}
+	    
+		*** In case we don't want the field shows the message but highlight it with red color, we use the following:
+		error={formik.errors.<campo> && true}
+	*/
 		<Form className="password-form" onSubmit={formik.handleSubmit}>
 			<Form.Input
 				type="password"

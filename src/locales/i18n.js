@@ -56,11 +56,11 @@ export const languages = {
 	},
 };
 
+/*
 i18n.use(LanguageDetector).use(initReactI18next).init({
 	resources: languages.resources,
 });
-
+*/
+i18n.use(LanguageDetector).use(initReactI18next).init(languages);
 i18n.changeLanguage();
-
-
 export default i18n;

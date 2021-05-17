@@ -8,6 +8,7 @@ export const REGISTER = gql`
 			username
 			email
 			password
+			language
 		}
 	}
 `;

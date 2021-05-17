@@ -20,6 +20,7 @@ const Dropdown = (props) => {
 				props.dispatch(changeLangAsync(languages.resources[`${getUser.language}`].flag));
 				i18n.changeLanguage(getUser.language);
 			} catch (error) {
+				console.log(getUser)
 				console.log(error);
 			}
 		}

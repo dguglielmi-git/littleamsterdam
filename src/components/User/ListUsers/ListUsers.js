@@ -14,7 +14,7 @@ export default function ListUsers(props) {
 
 	const goToUser = (username) => {
 		setShowModal(false);
-		history.push(`/${username}`);
+		history.push(`/profile/${username}`);
 	};
 
 	return (

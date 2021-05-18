@@ -19,18 +19,28 @@ function App() {
 		if (!token) {
 			setAuth(null);
 		} else {
-
-			const { exp } = decodeToken(token);
-
-			if (Date.now() >= (exp * 1000)) {
-				client.clearStore();
-				logout();
-				history.push('/');
-			} else {
-				setAuth(decodeToken(token));
+			try {
+				const { exp } = decodeToken(token);
+				if (Date.now() >= (exp * 1000)) {
+					cleanStorage();
+				} else {
+					try {
+						setAuth(decodeToken(token));
+					} catch (error) {
+						cleanStorage();
+					}
+				}
+			} catch (error) {
+				cleanStorage();
 			}
 		}
 	}, []);
+
+	const cleanStorage = () => {
+		client.clearStore();
+		logout();
+		history.push('/');
+	}
 
 	const logout = () => {
 		removeToken();

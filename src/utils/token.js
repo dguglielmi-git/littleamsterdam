@@ -10,7 +10,14 @@ export function getToken() {
 }
 
 export function decodeToken(token) {
-  return jwtDecode(token);
+  try {
+    return jwtDecode(token);
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+
+
 }
 
 export function removeToken() {

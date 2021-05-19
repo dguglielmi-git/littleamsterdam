@@ -36,7 +36,7 @@ export const TRANSLATION_ES = {
 	loginFormWrongEmail: 'Email Incorrecto',
 	loginFormEmailRequired: 'Email Obligatorio',
 	loginFormPassRequired: 'Password Obligatorio',
-	loginFormUserPass: 'Usuario o Email',
+	loginFormUserPass: 'Email',
 	loginFormButton: 'Iniciar Sesion',
 	loginFormLangPicker: 'Idioma',
 
@@ -129,7 +129,7 @@ export const TRANSLATION_ES = {
 	followersFolloweds: 'Seguidos',
 	followersBlocked: 'Bloqueados',
 	followersAlbums: 'Albumes',
-	followersAlbum: 'Album',	
+	followersAlbum: 'Album',
 
 	// HeaderProfile
 	headerProfileStopFollowing: 'Dejar de Seguir',
@@ -152,7 +152,7 @@ export const TRANSLATION_ES = {
 	profileChangePicture: 'Cambiar Foto de perfil',
 
 	// SiteWebForm
-	siteWebFormUpdateOk : 'Se actualizo el sitio web correctamente.',
+	siteWebFormUpdateOk: 'Se actualizo el sitio web correctamente.',
 	siteWebFormUpdateError: 'Error al actualizar el Sitio Web',
 	siteWebFormWebsite: 'Sitio Web',
 	siteWebFormUpdateButton: 'Actualizar',

@@ -36,7 +36,7 @@ export const TRANSLATION_EN = {
 	loginFormWrongEmail: 'Wrong email',
 	loginFormEmailRequired: 'Email required',
 	loginFormPassRequired: 'Password required',
-	loginFormUserPass: 'Username or Email',
+	loginFormUserPass: 'Email',
 	loginFormButton: 'Sign in',
 	loginFormLangPicker: 'Language',
 
@@ -73,7 +73,7 @@ export const TRANSLATION_EN = {
 	// ActionsMobile
 	actionsMobileComment: 'Comment',
 	actionsMobileComments: 'Comments',
-	
+
 
 	// CommentForm
 	commentFormAddComment: 'Write a Comment...',
@@ -132,7 +132,7 @@ export const TRANSLATION_EN = {
 	followersFolloweds: 'Followed',
 	followersBlocked: 'Blocked',
 	followersAlbums: 'Albums',
-	followersAlbum: 'Album',	
+	followersAlbum: 'Album',
 
 	// HeaderProfile
 	headerProfileStopFollowing: 'Stop Following',
@@ -155,7 +155,7 @@ export const TRANSLATION_EN = {
 	profileChangePicture: 'Change Profile Picture',
 
 	// SiteWebForm
-	siteWebFormUpdateOk : 'The website has been successfully updated.',
+	siteWebFormUpdateOk: 'The website has been successfully updated.',
 	siteWebFormUpdateError: 'Error Updating Web site.',
 	siteWebFormWebsite: 'Website',
 	siteWebFormUpdateButton: 'Update',

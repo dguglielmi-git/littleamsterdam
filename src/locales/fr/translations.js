@@ -36,7 +36,7 @@ export const TRANSLATION_FR = {
 	loginFormWrongEmail: 'Mauvaise adresse mail',
 	loginFormEmailRequired: 'Email requis',
 	loginFormPassRequired: 'Mot de passe requis',
-	loginFormUserPass: `Nom d'utilisateur ou email`,
+	loginFormUserPass: `Email`,
 	loginFormButton: `S'identifier`,
 	loginFormLangPicker: 'Langue',
 

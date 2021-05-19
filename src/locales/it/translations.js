@@ -36,7 +36,7 @@ export const TRANSLATION_IT = {
 	loginFormWrongEmail: 'Email sbagliata',
 	loginFormEmailRequired: 'Email obbligatorio',
 	loginFormPassRequired: 'Password richiesta',
-	loginFormUserPass: 'Nome utente o email',
+	loginFormUserPass: 'Email',
 	loginFormButton: 'registrati',
 	loginFormLangPicker: 'linguaggio',
 
@@ -152,7 +152,7 @@ export const TRANSLATION_IT = {
 	profileChangePicture: 'Cambia immagine del profilo',
 
 	// SiteWebForm
-	siteWebFormUpdateOk : 'Il sito Web è stato aggiornato con successo.',
+	siteWebFormUpdateOk: 'Il sito Web è stato aggiornato con successo.',
 	siteWebFormUpdateError: `Errore durante l'aggiornamento del sito Web.`,
 	siteWebFormWebsite: 'Sito web',
 	siteWebFormUpdateButton: 'Aggiornare',

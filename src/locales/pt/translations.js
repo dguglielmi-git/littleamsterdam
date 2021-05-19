@@ -36,7 +36,7 @@ export const TRANSLATION_PT = {
 	loginFormWrongEmail: 'E-mail errado',
 	loginFormEmailRequired: 'Email obrigatório',
 	loginFormPassRequired: 'Senha requerida',
-	loginFormUserPass: 'Nome de usuário ou email',
+	loginFormUserPass: 'Email',
 	loginFormButton: 'Entrar',
 	loginFormLangPicker: 'Língua',
 

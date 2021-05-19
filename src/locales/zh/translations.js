@@ -36,7 +36,7 @@ export const TRANSLATION_ZH = {
 	loginFormWrongEmail: '錯誤的電子郵件',
 	loginFormEmailRequired: '電子郵件必填',
 	loginFormPassRequired: '要求輸入密碼',
-	loginFormUserPass: '用戶名或電子郵件',
+	loginFormUserPass: '電子郵件',
 	loginFormButton: '登入',
 	loginFormLangPicker: '語',
 

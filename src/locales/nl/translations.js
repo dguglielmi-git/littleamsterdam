@@ -36,7 +36,7 @@ export const TRANSLATION_NL = {
 	loginFormWrongEmail: 'Foute email',
 	loginFormEmailRequired: 'Email verplicht',
 	loginFormPassRequired: 'wachtwoord benodigd',
-	loginFormUserPass: 'Gebruikersnaam of email',
+	loginFormUserPass: 'Email',
 	loginFormButton: 'Log in',
 	loginFormLangPicker: 'taal',
 
